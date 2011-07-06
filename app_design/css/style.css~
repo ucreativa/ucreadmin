@@ -1,0 +1,196 @@
+body{
+	overflow: hidden;
+}
+
+#login_page{
+    background: #3567AE url('../../app_design/img/bg.jpg');
+    background-position: top center;
+    font-family: Arial;
+    font-size: 12px; 
+}
+
+#login{
+    position: relative;
+    height: 180px;
+    width: 240px;
+    margin: auto;
+    border: 1px solid #CCCCCC;
+    padding: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #000000;
+    opacity: 0.6;
+    color: #FFFFFF;
+    top: 100px;
+    font-weight: bold;
+}
+
+.text{
+	 position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: thin solid #CCCCCC;
+    padding: 3px;
+    margin: 3px;
+}
+
+#control_panel{
+	 background: #FFFFFF;
+	 background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.89, rgb(255,255,255)),color-stop(1, rgb(227,227,227)));
+	 background-image: -moz-linear-gradient(center bottom,rgb(255,255,255) 89%,rgb(227,227,227) 100%);
+    position: relative;
+    height: 300px;
+    width: 540px;
+    margin: auto;
+    border: 1px solid #3B5998;
+    border-top: 30px solid #3B5998;
+    padding: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    color: #000000;
+    top: 20px;
+    box-shadow: 5px 5px 28px #222;
+	 -webkit-box-shadow: 5px 5px 28px #222;
+	 -moz-box-shadow: 5px 5px 28px #222;
+	 font-size: 14px;
+}
+
+#cp_page{
+    background: #CCCCCC;
+    font-family: Arial;
+    font-size: 12px; 
+}
+
+.msg_box{
+    position: relative;
+    height: auto;
+    width: 400px;
+    margin:auto;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #FF0000;
+    opacity: 0.6;
+    color: #FFFFFF;
+    top: 105px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.img_link{
+	border: 1px solid #AAAAAA;
+	margin: 5px;
+}
+
+#sub_login {
+    position: relative;
+    height: 30px;
+    width: 260px;
+    margin: auto;
+    top: 70px;
+}
+
+#sub_login a {
+	color: #FFFFFF;
+	font-weight: bold;
+   font-size: 12px;
+   margin-left: 10px;
+}
+
+#services_icons {
+	position: absolute;
+	right: 20px;
+	top: 5px;
+}
+
+#cp_icons_panel {
+	position: relative;
+	left: 0px;
+	top: 30px;
+	height: 250px;
+	width: 300px;
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+   border-radius: 10px;
+}
+
+.cp_icons {
+	position: relative;
+	margin: 10px;
+	height: 52px;
+	width: 70px;
+   border-radius: 10px;
+}
+
+#form_base {
+	border: 1px solid #3B5998;
+   border-top: 30px solid #3B5998;
+   padding: 10px;
+   -moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+	display: none;
+	position: relative;
+	margin:auto;
+	top: -300px;
+	background: #FFFFFF;
+	z-index:1;
+	box-shadow: 5px 5px 28px #222;
+	-webkit-box-shadow: 5px 5px 28px #222;
+	-moz-box-shadow: 5px 5px 28px #222;
+	cursor: move;
+}
+
+#form_container {
+	border: none;
+}
+
+#inactive_base {
+   display: none;
+	position: absolute;
+	background: #000000;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	top:0px;
+	z-index:0;
+}
+
+#button_close {
+   display: none;
+	position: absolute;
+	right: 10px;
+	top:-25px;
+	z-index:1;
+}
+
+.general_form_page{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold; 
+}
+
+.block_form{
+    float: left;
+    margin-right:35px;	
+}
+
+#action_buttons_form{
+	position: absolute;
+   bottom: -10px;
+	right: 10px;
+}
+
+.groupbox{
+	position: relative;
+   top: -20px;
+   padding: 15px;
+}
+
+
+

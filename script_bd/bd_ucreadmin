@@ -1,0 +1,292 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Started on 2011-07-05 16:59:08 CST
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 1506 (class 1259 OID 28091)
+-- Dependencies: 1790 3
+-- Name: tbl_sites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tbl_sites (
+    site_id integer NOT NULL,
+    site_name character varying(32) NOT NULL,
+    site_url character varying(128) NOT NULL,
+    site_icon character varying(64) DEFAULT 'unknow.jpg'::character varying,
+    site_info character varying(128),
+    site_host character varying(32) NOT NULL,
+    site_dbname character varying(32) NOT NULL,
+    site_port character varying(4) NOT NULL,
+    site_dbuser character varying(32) NOT NULL,
+    site_dbpass character varying(32) NOT NULL,
+    site_status character varying(1) NOT NULL,
+    site_created date NOT NULL,
+    site_modified date NOT NULL
+);
+
+
+--
+-- TOC entry 1505 (class 1259 OID 28089)
+-- Dependencies: 3 1506
+-- Name: tbl_sites_site_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tbl_sites_site_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 1807 (class 0 OID 0)
+-- Dependencies: 1505
+-- Name: tbl_sites_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tbl_sites_site_id_seq OWNED BY tbl_sites.site_id;
+
+
+--
+-- TOC entry 1501 (class 1259 OID 28052)
+-- Dependencies: 3
+-- Name: tbl_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tbl_users (
+    user_id integer NOT NULL,
+    user_name character varying(32) NOT NULL,
+    user_password character varying(32) NOT NULL,
+    user_group_fk integer NOT NULL,
+    user_info character varying(128),
+    user_status character varying(1) NOT NULL,
+    user_created date NOT NULL,
+    user_modified date NOT NULL
+);
+
+
+--
+-- TOC entry 1503 (class 1259 OID 28063)
+-- Dependencies: 1788 3
+-- Name: tbl_users_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tbl_users_groups (
+    user_group_id integer NOT NULL,
+    user_group_name character varying(32) NOT NULL,
+    user_group_acces character varying(128) NOT NULL,
+    user_group_info character varying(128) NOT NULL,
+    user_group_status character varying DEFAULT 1 NOT NULL,
+    user_group_created date NOT NULL,
+    user_group_modified date NOT NULL
+);
+
+
+--
+-- TOC entry 1504 (class 1259 OID 28066)
+-- Dependencies: 3 1503
+-- Name: tbl_users_groups_user_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tbl_users_groups_user_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 1808 (class 0 OID 0)
+-- Dependencies: 1504
+-- Name: tbl_users_groups_user_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tbl_users_groups_user_group_id_seq OWNED BY tbl_users_groups.user_group_id;
+
+
+--
+-- TOC entry 1508 (class 1259 OID 28100)
+-- Dependencies: 3
+-- Name: tbl_users_sites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tbl_users_sites (
+    user_site_id integer NOT NULL,
+    user_fk integer NOT NULL,
+    site_fk integer NOT NULL
+);
+
+
+--
+-- TOC entry 1507 (class 1259 OID 28098)
+-- Dependencies: 3 1508
+-- Name: tbl_users_sites_user_site_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tbl_users_sites_user_site_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 1809 (class 0 OID 0)
+-- Dependencies: 1507
+-- Name: tbl_users_sites_user_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tbl_users_sites_user_site_id_seq OWNED BY tbl_users_sites.user_site_id;
+
+
+--
+-- TOC entry 1502 (class 1259 OID 28055)
+-- Dependencies: 1501 3
+-- Name: tbl_users_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tbl_users_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 1810 (class 0 OID 0)
+-- Dependencies: 1502
+-- Name: tbl_users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tbl_users_user_id_seq OWNED BY tbl_users.user_id;
+
+
+--
+-- TOC entry 1789 (class 2604 OID 28094)
+-- Dependencies: 1505 1506 1506
+-- Name: site_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE tbl_sites ALTER COLUMN site_id SET DEFAULT nextval('tbl_sites_site_id_seq'::regclass);
+
+
+--
+-- TOC entry 1786 (class 2604 OID 28057)
+-- Dependencies: 1502 1501
+-- Name: user_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE tbl_users ALTER COLUMN user_id SET DEFAULT nextval('tbl_users_user_id_seq'::regclass);
+
+
+--
+-- TOC entry 1787 (class 2604 OID 28068)
+-- Dependencies: 1504 1503
+-- Name: user_group_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE tbl_users_groups ALTER COLUMN user_group_id SET DEFAULT nextval('tbl_users_groups_user_group_id_seq'::regclass);
+
+
+--
+-- TOC entry 1791 (class 2604 OID 28103)
+-- Dependencies: 1508 1507 1508
+-- Name: user_site_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE tbl_users_sites ALTER COLUMN user_site_id SET DEFAULT nextval('tbl_users_sites_user_site_id_seq'::regclass);
+
+
+--
+-- TOC entry 1797 (class 2606 OID 28097)
+-- Dependencies: 1506 1506
+-- Name: tbl_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_sites
+    ADD CONSTRAINT tbl_sites_pkey PRIMARY KEY (site_id);
+
+
+--
+-- TOC entry 1795 (class 2606 OID 28083)
+-- Dependencies: 1503 1503
+-- Name: tbl_users_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users_groups
+    ADD CONSTRAINT tbl_users_groups_pkey PRIMARY KEY (user_group_id);
+
+
+--
+-- TOC entry 1793 (class 2606 OID 28062)
+-- Dependencies: 1501 1501
+-- Name: tbl_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users
+    ADD CONSTRAINT tbl_users_pkey PRIMARY KEY (user_id);
+
+
+--
+-- TOC entry 1799 (class 2606 OID 28105)
+-- Dependencies: 1508 1508
+-- Name: tbl_users_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users_sites
+    ADD CONSTRAINT tbl_users_sites_pkey PRIMARY KEY (user_site_id);
+
+
+--
+-- TOC entry 1801 (class 2606 OID 28106)
+-- Dependencies: 1796 1508 1506
+-- Name: tbl_users_sites_site_fk_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users_sites
+    ADD CONSTRAINT tbl_users_sites_site_fk_fkey FOREIGN KEY (site_fk) REFERENCES tbl_sites(site_id);
+
+
+--
+-- TOC entry 1802 (class 2606 OID 28111)
+-- Dependencies: 1508 1792 1501
+-- Name: tbl_users_sites_user_fk_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users_sites
+    ADD CONSTRAINT tbl_users_sites_user_fk_fkey FOREIGN KEY (user_fk) REFERENCES tbl_users(user_id);
+
+
+--
+-- TOC entry 1800 (class 2606 OID 28084)
+-- Dependencies: 1501 1503 1794
+-- Name: tbl_users_user_group_fk_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tbl_users
+    ADD CONSTRAINT tbl_users_user_group_fk_fkey FOREIGN KEY (user_group_fk) REFERENCES tbl_users_groups(user_group_id);
+
+
+-- Completed on 2011-07-05 16:59:08 CST
+
+--
+-- PostgreSQL database dump complete
+--
+
