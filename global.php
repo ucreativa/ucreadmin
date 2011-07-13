@@ -1,6 +1,6 @@
 ﻿<?php
   $myhost="http://localhost";
-  $myproject="ucreauth";
+  $myproject="ucreadmin";
   $mysite=$myhost . "/" . $myproject;
   
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
@@ -24,5 +24,18 @@
   define('__CSS_PATH', $mysite . "/app_design/css/");
   define('__IMG_PATH', $mysite . "/app_design/img/");
   
+  set_error_handler("my_error_handler", E_ALL);
+  
   require_once(__CLS_PATH . "cls_message.php");
+  
+  /*my_error_handler: Maneja globalmente los warnings y excepciones de PHP y los muestra en 
+  un message box personalizado.*/
+  
+  function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
+	   try{	
+			throw new Exception($errstr);
+		}catch(Exception $e){
+			cls_Message::show_message($e->getMessage(),"warning","");
+	   }
+  } 
 ?>

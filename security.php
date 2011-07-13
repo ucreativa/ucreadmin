@@ -1,9 +1,9 @@
 <?php
 
-   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreauth/global.php");
+   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
    
 	//Inicio la sesión
-	   session_name("UCREAUTH");
+	   session_name("UCREADMIN");
 	   session_start();
 	//COMPRUEBA QUE EL USUARIO ESTA AUTENTIFICADO
 	if ($_SESSION["AUTH"] != "YES") {

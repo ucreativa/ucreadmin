@@ -1,7 +1,6 @@
 ﻿﻿<?php
 
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreauth/global.php");
-    require_once( __CLS_PATH . "cls_message.php");
     
     class cls_Kerberos {
     	
@@ -13,6 +12,7 @@
         function __construct(){
      	    $this->ticket=new KRB5CCache();
           $this->flags=array('forwardable'=> true, 'tkt_life'=> 60 * 60);
+          $this->kadmin=new KADM5("ucreativa/admin","12345",false);
         }
         
         function get_ticket() {
@@ -26,7 +26,7 @@
 	         try{
 					$authenticate = $this->ticket->initPassword($user, $passw, $this->flags);
 			   }catch(Exception $e){
-			    	cls_Message::show_message($e->getMessage(),"error");
+			    	cls_Message::show_message($e->getMessage(),"error","");
 			   } 
 
 		   	if ($authenticate==1)
@@ -40,26 +40,40 @@
 				return $this->conn_krb5_status;
         }
         
-        public function krb5_add_user($krb5_user,$krb5_password,$exp_time){
+        public function krb5_add_user($krb5_user,$krb5_password){
+        	   $result=false;
         	   try{
-        	   	$this->kadmin=new KADM5("test","123",false);
         	   	$krb5_princ=new KADM5Principal($krb5_user);
-					$krb5_princ->setExpiryTime($exp_time);
             	$this->kadmin->createPrincipal($krb5_princ, $krb5_password);
             	$krb5_princ->save();
             	unset($krb5_princ);
+            	$result=true;
             }catch(Exception $e){
-			    	cls_Message::show_message($e->getMessage(),"error");
+			    	cls_Message::show_message($e->getMessage(),"error","");
 			   } 
+			   
+			   return $result;
+        }
+        
+        public function krb5_edit_user($krb5_user,$krb5_password){
+        	   $result=false;        	   
+        	   try{
+        	   	$krb5_princ=$this->kadmin->getPrincipal($krb5_user);
+            	$krb5_princ->rename($krb5_user, $krb5_password);
+            	$krb5_princ->save();
+            	unset($krb5_princ);
+            	$result=true;
+            }catch(Exception $e){
+			    	cls_Message::show_message($e->getMessage(),"error","");
+			   } 
+			   
+			   return $result;
         }
         
         public function krb5_delete_user($username){
 
         }
         
-        public function krb5_edit_user($username){
-
-        }
     }
 
 ?>

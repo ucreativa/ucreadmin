@@ -22,7 +22,7 @@ body{
     background: #000000;
     opacity: 0.6;
     color: #FFFFFF;
-    top: 100px;
+    top: 120px;
     font-weight: bold;
 }
 
@@ -36,6 +36,19 @@ body{
     margin: 3px;
 }
 
+.search{
+	 position: relative;
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-radius: 18px;
+    border: thin solid #CCCCCC;
+    padding: 3px;
+    margin: 3px;
+	 width: 300px;
+	 background: #FFFFFF no-repeat right url(../img/find.png);
+}
+
+
 #control_panel{
 	 background: #FFFFFF;
 	 background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.89, rgb(255,255,255)),color-stop(1, rgb(227,227,227)));
@@ -44,8 +57,8 @@ body{
     height: 300px;
     width: 540px;
     margin: auto;
-    border: 1px solid #3B5998;
-    border-top: 30px solid #3B5998;
+    border: 1px solid #CCEE00;
+    border-top: 30px solid #CCEE00;
     padding: 20px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -65,21 +78,33 @@ body{
 }
 
 .msg_box{
-    position: relative;
+    position: fixed;
     height: auto;
     width: 400px;
-    margin:auto;
+    margin-left:-210px;
+    left:50%;
     border: 1px solid #CCCCCC;
     padding: 10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: #FF0000;
-    opacity: 0.6;
     color: #FFFFFF;
-    top: 105px;
+    /*text-shadow: 2px 2px 2px #000;*/
+    top: 0px;
     font-weight: bold;
     text-align: center;
+}
+
+#error{
+	background: #C00000;
+}
+
+#success{
+	background: #008030;
+}
+
+#warning{
+	background: #FF9900;
 }
 
 .img_link{
@@ -92,7 +117,7 @@ body{
     height: 30px;
     width: 260px;
     margin: auto;
-    top: 70px;
+    top: 90px;
 }
 
 #sub_login a {
@@ -129,8 +154,8 @@ body{
 }
 
 #form_base {
-	border: 1px solid #3B5998;
-   border-top: 30px solid #3B5998;
+	border: 1px solid #CCCCCC;
+   border-top: 30px solid #CCCCCC;
    padding: 10px;
    -moz-border-radius: 10px;
    -webkit-border-radius: 10px;
@@ -144,6 +169,125 @@ body{
 	-webkit-box-shadow: 5px 5px 28px #222;
 	-moz-box-shadow: 5px 5px 28px #222;
 	cursor: move;
+}
+
+#gpb_search
+{
+	padding: 5px;
+	background: url(../img/panel_back.jpg) repeat-x #F5F5F5;
+	border: 1px solid #CCCCCC;
+	border-top: 5px solid #2BACBD;
+	position: relative;
+	width: 550px;
+	height: 305px;
+}
+
+
+#search_results th
+{
+	background: url(../img/text_back.jpg) repeat-x;
+	color: #222222;
+	position :relative;
+	width: auto;
+}
+
+#search_results td
+{
+	padding :2px;
+	font-size : 14px;
+}
+
+.tr_impar
+{
+	background-color : #DDDDDD;
+}
+
+#search_results th
+{
+	height : 24px;
+	padding :2px;
+	font-size : 11px;	
+}
+
+#search_results td
+{
+	border : 1px solid #CCCCCC;
+	text-align:left;
+	padding: 5px;
+}
+
+#search_results tr:hover
+{
+	background-color: #B8E0E6;
+	cursor :pointer;
+}
+
+#search_results #table_head:hover
+{
+	background-color: #FFFFFF;
+	cursor :default;
+}
+
+#search_results a, #search_results a:visited, #search_results img 
+{
+	text-decoration : none;
+	border: none;
+	color: #444444;
+}
+
+
+table 
+{
+	border-collapse :collapse ;
+}
+
+#listview
+{
+	position : relative;
+	width: 600px;
+	height: 250px;
+	border : 1px solid #CCCCCC;
+	overflow:scroll;
+	background: #FFFFFF;
+	margin: 5px;
+}
+
+#search_results 
+{
+	position: absolute;
+	width: 100px;
+}
+
+#search_box {
+	border: 2px solid #AAAAAA;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+	position: fixed;
+	margin:auto;
+	top: 0px;
+	background: #FFFFFF;
+	z-index:10;
+	cursor: move;
+	width: 650px;
+	height: 370px;
+}
+
+.doc_box
+{
+	position:relative;
+	width:90%;
+	height: auto;
+	font-size: 12px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-left : auto; margin-right: auto; margin-bottom: 10px; margin-top :10px;
+	background: #FFFFFF;
+	border:1px solid #999999;
+	border-top: 3px solid #2BACBD; 
+	padding: 4px;
+	text-align:justify;
 }
 
 #form_container {
@@ -182,7 +326,6 @@ body{
 
 #action_buttons_form{
 	position: absolute;
-   bottom: -10px;
 	right: 10px;
 }
 
@@ -190,6 +333,10 @@ body{
 	position: relative;
    top: -20px;
    padding: 15px;
+}
+
+#search_content{
+	
 }
 
 

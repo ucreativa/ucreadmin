@@ -1,5 +1,5 @@
 ﻿﻿<?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreauth/global.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once( __CLS_PATH . "cls_html.php");
 ?>
 

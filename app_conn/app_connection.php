@@ -1,6 +1,6 @@
 ﻿<?php
  
-   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreauth/global.php");
+   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
 
    class app_Connection {   
    

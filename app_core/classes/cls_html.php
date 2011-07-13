@@ -12,6 +12,10 @@
            return "<input type='text' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " " . $required . " />" . "\n";
         }
         
+        public function html_input_hidden($name, $value){
+           return "<input type='hidden' name='" . $name . "' id='" . $name . "' value='" . $value . "' />" . "\n";
+        }
+        
         public function html_textarea($rows, $cols, $name, $id, $class, $value, $tabindex, $disabled, $event, $required){
            return "<textarea rows=" . $rows . " cols=" . $cols . " name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " " . $required . "></textarea>" . "\n";
         }
@@ -25,7 +29,7 @@
         }
 
         public function html_form_tag($name, $action, $target, $method){
-           return "<form name='" . $name . "' action='" . $action . "' target='" . $target . "'  method='" . $method . "' >" . "\n";
+           return "<form id='" . $name . "' name='" . $name . "' action='" . $action . "' target='" . $target . "'  method='" . $method . "' >" . "\n";
         }
 
         public function html_form_end(){
@@ -58,8 +62,9 @@
         
         function html_select($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
 				$html_select = "<select name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
-				foreach ($options as $option => $value) {
-					$html_select.= '<option value='.$value.'>'.$option.'</option>';
+							
+				foreach ($options as $option) {
+					$html_select.= '<option value='.$option[0].'>'.$option[1].'</option>';
 				}
 				$html_select.= '</select>';
 				return $html_select;

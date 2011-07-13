@@ -2,14 +2,14 @@
             (0 0)
 --------o00o-{_}-o00o-----------------------
 
-UCREADMIN v1.0 (2011)
+UCREAUTH v1.0 (2011)
 Funciones y procedimientos JavaScript
 UCREATIVA. 
 --------------------------------------------
 */
 
-function open_form(nombre_form,width,height){
-    document.getElementById("form_container").src = nombre_form;
+function open_form(form_name,width,height){
+    document.getElementById("form_container").src = form_name;
     document.getElementById("form_base").style.display = 'block';
     document.getElementById("inactive_base").style.display = 'block';
     document.getElementById("form_base").style.height = height + "px";
@@ -19,16 +19,17 @@ function open_form(nombre_form,width,height){
     document.getElementById("button_close").style.display = 'block';
 }
 
-function close_form(nombre_form,width,height){
+function close_form(){
+	 document.getElementById("form_container").src = "";
     document.getElementById("form_base").style.display = 'none';
     document.getElementById("button_close").style.display = 'none';
     document.getElementById("inactive_base").style.display = 'none';
 }
 
-function consultar_bd(ruta,form,param){
+function ajaxrequest_db(ruta,form,param){
     $(document).ready(function(){
                 $.ajax({
-                        url: 'frm_motorBusqueda.aspx?ruta='+ruta+'&formulario='+form+'&parametro='+ param,
+                        url: 'searchcore.php?path='+ruta+'&form='+form+'&param='+ param,
                         cache: false,
                         type: "GET",
                         success: function(datos){
