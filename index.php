@@ -11,7 +11,7 @@
           echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
       ?>
 
-    <title>UCREAUTH v 1.0</title>
+    <title>UCREADMIN v 1.0</title>
   </head>
 
   <body id="login_page">

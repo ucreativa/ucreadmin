@@ -1,6 +1,7 @@
 ﻿<?php
   $myhost="http://localhost";
-  $myproject="ucreauth";
+  $myproject="ucreadmin";
+  global $mysite;
   $mysite=$myhost . "/" . $myproject;
   
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);

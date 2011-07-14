@@ -17,7 +17,7 @@
 																	tbl_users.user_password,
 																	tbl_users.user_group,
 																	tbl_users.user_info,
-																	tbl_users.user_status,
+																	tbl_users.user_status
 																	FROM tbl_users
 																	WHERE tbl_users.user_id = " . $id_user );
 			                      		                          

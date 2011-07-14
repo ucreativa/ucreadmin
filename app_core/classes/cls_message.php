@@ -29,6 +29,9 @@
            	 case "warning":
            	   $message="La información ha sido ingresada correctamente";
            	 break;
+           	 case "fail_auth":
+           	   $message="El Usuario o Password suministrados son incorrectos";
+           	 break;
            	 case "":
            	   $message=$text;
            	 break;

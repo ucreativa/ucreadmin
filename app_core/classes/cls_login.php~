@@ -7,32 +7,34 @@
     	
 		 var $auth_pg;
 		 var $conn_status;
-		 var $username;
        private $data_provide;
+       private $user_id;
 		 
 		 function __construct(){
          $this->auth_pg=new cls_Database();
 			$this->data_provide=new cls_Database();
 		 }
-		 	 
-		 function get_username(){
-		 	return $this->username;
+		 
+		 function get_user_id(){
+		 	return $this->user_id;
 		 }
 		 
+		 //Verifica la conexión con postgre y la autentificación
 		 public function login($user, $pssw){
  
-         //Verifica la conexion con postgre
-		 	if($this->auth_pg->is_connect() && cls_Login::autenticate($user, $pssw)){
-		 		$this->conn_status=true;
-		 		$this->username=$user;	
+		 	if($this->auth_pg->is_connect() && cls_Login::authenticate($user, $pssw)){
+		 		$this->conn_status=true;	
 		   }else{
 		   	$this->conn_status=false;
 		   }
 		 } 
 		 
-		 public function autenticate($user, $pssw){
+		 
+		 //Verfica si el usuario y el password suministrados son correctos
+		 public function authenticate($user, $pssw){
 	      
 	      $success=false;
+	      $value="";
 	      
 			$result=$this->data_provide->sql_execute("SELECT tbl_users.user_id
 																	FROM tbl_users
@@ -40,22 +42,25 @@
 																	AND tbl_users.user_password = '" . md5($pssw) . "'
 																	AND tbl_users.user_status = 'A'");
 			
-			return $this->data_provide->sql_get_rows($result);
+			$value=$this->data_provide->sql_get_rows($result);
 
-         if($result){
+         if($value){
             $success=true;
+            $this->user_id=$value[0][0];
          } 			
 			                      		                          
 			return $success;
 		 } 
 		 
-		 public function logout(){ 
-            session_name("UCREADMIN");
-            session_destroy();
-            unset($this->auth_pg);
-		   	$this->conn_status=false;
-		   	header("Location:" . $mysite);
-		 }  
+		public function logout(){ 
+         session_name("UCREADMIN");
+         $_SESSION['AUTH']="NO";
+         session_destroy();
+         unset($this->auth_pg);
+	   	$this->conn_status=false;
+	   	header("Location:" . __SITE_PATH);
+		}
+		  
     }
 
 	

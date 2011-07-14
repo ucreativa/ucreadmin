@@ -60,7 +60,7 @@
            return "<input type='file' accept='" . $accept . "' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " />" . "\n";
         }  
         
-        function html_select($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
+        function html_select_db($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
 				$html_select = "<select name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
 							
 				foreach ($options as $option) {
@@ -68,7 +68,17 @@
 				}
 				$html_select.= '</select>';
 				return $html_select;
-			}    
+			} 
+			
+			function html_select($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
+				$html_select = "<select name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
+							
+				foreach ($options as $value => $text) {
+					$html_select.= '<option value='.$value.'>'.$text.'</option>';
+				}
+				$html_select.= '</select>';
+				return $html_select;
+			}   
         
         function html_js_header($file){
            return "<script src='" . $file . "' type='text/javascript'></script>" . "\n";

@@ -17,7 +17,7 @@
   <body id="login_page">
 	  <div>
 		    <?php
-			   // include_once(__VWS_PATH . "/login.php");
+			    include_once(__VWS_PATH . "/login.php");
 		    ?>
 	 </div>
   </body>

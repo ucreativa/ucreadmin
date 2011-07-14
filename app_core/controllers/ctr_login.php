@@ -29,12 +29,11 @@
 				    session_name("UCREADMIN");
 				 	 session_start();
 				 	 $_SESSION['AUTH']="YES";
-				 	 $_SESSION['USERNAME']=$this->login_acc->get_username(); 
+				 	 $_SESSION['IDUSER']=$this->login_acc->get_user_id(); 
 				 	 	 
 				 	 header("Location:" . __VWS_HOST_PATH . "control_panel.php");
 				}else{
-					 cls_Message::show_message("Usuario o Password incorrectos!!","warning","");
-					 //header("Location: index.php");
+					 cls_Message::show_message("","warning","fail_auth");
 				}	
 	   }
 	   
@@ -42,7 +41,7 @@
 	   function btn_logout_click() {
 	   	
 		   if (isset($_POST['btn_logout'])){
-		       $login_acc->logout();
+		       $this->login_acc->logout();
 		   }
 
 	   }

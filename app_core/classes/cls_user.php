@@ -15,7 +15,7 @@
 			$result=$this->data_provide->sql_execute("SELECT tbl_users.user_id,
 																	tbl_users.user_name,
 																	tbl_users.user_password,
-																	tbl_users.user_group,
+																	tbl_users.user_group_fk,
 																	tbl_users.user_info,
 																	tbl_users.user_status
 																	FROM tbl_users

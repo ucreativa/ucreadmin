@@ -3,7 +3,10 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_user.php");
-    require_once(__CLS_PATH . "cls_service.php");
+    require_once(__CTR_PATH . "ctr_login.php");
+    
+    //Declaramos el controlador de la vista actual el cual contiene las acciones a ejecutar
+    $ctr_Login=new ctr_Login();
 ?>
 
 <html>
@@ -15,7 +18,7 @@
           echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
           echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
       ?>
-    <title>UCREAUTH v1.0</title>   
+    <title>UCREADMIN v1.0</title>   
   </head>
 
   <body id="cp_page">
@@ -24,27 +27,25 @@
 		<div id="control_panel">
 			 <?php 
 		        $userdata=new cls_User();
-		   	  $row=$userdata->get_userdata($_SESSION['USERNAME'],"-1");
+		   	  $row=$userdata->get_userdata($_SESSION['IDUSER']);
 		   				  		   
 				  echo "<span>Bienvenid@ <b>" . $row[0][1] . "</b></span>";
 		    ?>
-			 <div id="services_icons">	  
-				 <?php
-				     //Obtenemos los servicios habilitados para el usuario
-				 	  $services=new cls_Service();
 
-   			     $row=$services->get_services_by_username($row[0][1]);
-				  		     
-				     if($row){
-						  foreach($row as $value){ 	  	    
-						  	    //Parámetros de: html_img_link($src, $href, $target, $title $id, $class, $alt, $event)
-						  	    echo cls_HTML::html_img_link(__RSC_IMG_HOST_PATH . $value[2] , $value[4], "_self" ,$value[3], $value[1], "img_link", "", $value[1], "");
-						  }
-					  }
-				 ?>
-			 </div>
+         <div id="services_icons">
+	         <?php echo cls_HTML::html_form_tag("frm_logout", "" ,"","post");	 ?>
+				<?php echo cls_HTML::html_input_button("submit","btn_logout","btn_logout","button","Salir",0,"",""); ?>
+				<?php echo cls_HTML::html_form_end(); ?>
+         </div>
 			 <div id="cp_icons_panel">
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios_32.png" , "#", "_self" ,"Usuarios", "icon_1", "cp_icons", "new_user","", "onclick=\"open_form('users.php',680,410);\""); ?>	  			
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "secciones_48.png" , "#", "_self" ,"Secciones", "icon_1", "cp_icons", "sections","", "onclick=\"open_form('section.php',880,510);\""); ?>	  			
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "noticias_48.png" , "#", "_self" ,"Noticias", "icon_2", "cp_icons", "news","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "imagenes_48.png" , "#", "_self" ,"Imágenes", "icon_3", "cp_icons", "images","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "archivos_48.png" , "#", "_self" ,"Archivos", "icon_4", "cp_icons", "files","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "links_48.png" , "#", "_self" ,"Links", "icon_5", "cp_icons", "links","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "tags_48.png" , "#", "_self" ,"Tags", "icon_6", "cp_icons", "tags","", "onclick=\"open_form('users.php',680,410);\""); ?>
+              <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios_48.png" , "#", "_self" ,"Usuarios", "icon_7", "cp_icons", "users","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "grupos_48.png" , "#", "_self" ,"Grupos de Usuarios", "icon_8", "cp_icons", "group_users","", "onclick=\"open_form('users.php',680,410);\""); ?>
 		    </div>
      </div>
      
@@ -58,3 +59,11 @@
   </body>
 
 </html>
+
+ <?php
+      //Eventos click de los botones de acción
+      
+	   if(isset($_POST['btn_logout'])){
+	   	$ctr_Login->btn_logout_click();
+	   }
+ ?>
