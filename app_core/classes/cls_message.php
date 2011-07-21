@@ -8,9 +8,15 @@
         }
         
         public function show_message($text,$type,$reason){
-        	  echo "<div class='msg_box' id='" . $type . "'><span>" . cls_Message::messages($reason,$text) . "</span></div>";
-           //Message Box Animation with JQUERY         	  
-        	  echo "<script>$('.msg_box').fadeOut(0);$('.msg_box').fadeIn(500);$('.msg_box').fadeOut(18000);</script>";
+        	  $message_box="<div class='msg_box' id='" . $type . "'><span>" . cls_Message::messages($reason,$text) . "</span></div>";
+        	  
+           //Message Box Animation with JQUERY
+           /*<div class='msg_box_container'></div> es el contenedor principal de los mensajes.
+            Este elemento es añadido a las páginas que necesita mostrar mensajes al usuario*/     	  
+        	  echo "<script>
+        	          $('#msg_box_container').html(" . json_encode($message_box) . ");
+        	          $('.msg_box').fadeOut(0);$('.msg_box').fadeIn(500);$('.msg_box').fadeOut(18000);
+        	        </script>";
         }
         
         public function messages($reason,$text){

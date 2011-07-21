@@ -289,7 +289,9 @@ function hidden_submenu(){
 
 $(function() {
 		$( "#form_base" ).draggable();
-		$( "#search_box" ).draggable();
+		$('.text .combo').betterTooltip({speed: 150, delay: 300});
 });
+
+
 
 

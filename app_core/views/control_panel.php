@@ -4,9 +4,11 @@
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_user.php");
     require_once(__CTR_PATH . "ctr_login.php");
+    require_once(__CTR_PATH . "ctr_control_panel.php");
     
     //Declaramos el controlador de la vista actual el cual contiene las acciones a ejecutar
     $ctr_Login=new ctr_Login();
+    $ctr_CP=new ctr_ControlPanel();
 ?>
 
 <html>
@@ -17,6 +19,7 @@
           echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
           echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
           echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
+          echo cls_HTML::html_css_header(__CSS_PATH . "tooltip/theme/style_tooltip.css","screen");
       ?>
     <title>UCREADMIN v1.0</title>   
   </head>
@@ -26,6 +29,7 @@
    <div>
 		<div id="control_panel">
 			 <?php 
+	            
 		        $userdata=new cls_User();
 		   	  $row=$userdata->get_userdata($_SESSION['IDUSER']);
 		   				  		   
@@ -38,14 +42,13 @@
 				<?php echo cls_HTML::html_form_end(); ?>
          </div>
 			 <div id="cp_icons_panel">
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "secciones_48.png" , "#", "_self" ,"Secciones", "icon_1", "cp_icons", "sections","", "onclick=\"open_form('section.php',880,510);\""); ?>	  			
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "secciones_48.png" , "#", "_self" ,"Secciones", "icon_1", "cp_icons", "sections","", "onclick=\"open_form('section.php',840,510);\""); ?>	  			
 			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "noticias_48.png" , "#", "_self" ,"Noticias", "icon_2", "cp_icons", "news","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "imagenes_48.png" , "#", "_self" ,"Imágenes", "icon_3", "cp_icons", "images","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "archivos_48.png" , "#", "_self" ,"Archivos", "icon_4", "cp_icons", "files","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "links_48.png" , "#", "_self" ,"Links", "icon_5", "cp_icons", "links","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "tags_48.png" , "#", "_self" ,"Tags", "icon_6", "cp_icons", "tags","", "onclick=\"open_form('users.php',680,410);\""); ?>
-              <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios_48.png" , "#", "_self" ,"Usuarios", "icon_7", "cp_icons", "users","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "grupos_48.png" , "#", "_self" ,"Grupos de Usuarios", "icon_8", "cp_icons", "group_users","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "archivos_48.png" , "#", "_self" ,"Archivos", "icon_3", "cp_icons", "files","", "onclick=\"open_form('fileupload.php',900,490);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "links_48.png" , "#", "_self" ,"Links", "icon_4", "cp_icons", "links","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "tags_48.png" , "#", "_self" ,"Tags", "icon_5", "cp_icons", "tags","", "onclick=\"open_form('users.php',680,410);\""); ?>
+              <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios_48.png" , "#", "_self" ,"Usuarios", "icon_6", "cp_icons", "users","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "grupos_48.png" , "#", "_self" ,"Grupos de Usuarios", "icon_7", "cp_icons", "group_users","", "onclick=\"open_form('users.php',680,410);\""); ?>
 		    </div>
      </div>
      

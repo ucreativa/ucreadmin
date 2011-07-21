@@ -14,7 +14,7 @@
 	   
  	   public function __construct(){
  			$this->host="localhost";
-		   $this->dbname="bd_ucreauth";
+		   $this->dbname="bd_ucreasite";
 		   $this->port="5432";
 		   $this->user="postgres";
 		   $this->password="123";

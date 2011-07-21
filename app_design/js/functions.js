@@ -289,6 +289,9 @@ function hidden_submenu(){
 
 $(function() {
 		$( "#form_base" ).draggable();
+		$('.text').betterTooltip({speed: 150, delay: 300});
 });
+
+
 
 

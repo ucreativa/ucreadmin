@@ -73,8 +73,8 @@ $.fn.betterTooltip = function(options){
 		   associated with the tooltip                */
 		setTip = function(top, left){
 			var topOffset = tip.height();
-			var xTip = (left-30)+"px";
-			var yTip = (top-topOffset-60)+"px";
+			var xTip = (left+200)+"px";
+			var yTip = (top-topOffset-10)+"px";
 			tip.css({'top' : yTip, 'left' : xTip});
 		}
 		

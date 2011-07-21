@@ -45,6 +45,7 @@
                         while($a < count($dataset)){
                             if($a==0){ ?>
                                <tr class=<?php echo "'" . $class_row . "'"; ?> >
+                               <td><a target="_parent" href="<?php echo __VWS_HOST_PATH . 'fileupload.php'; ?>?id=<?php echo $dataset[0]; ?>&edit=1&return=<?php echo $_GET['path']; ?>&form=<?php echo $_GET['form']; ?>" title="Administrar Archivos"><?php echo cls_HTML::html_img_tag(__IMG_PATH . "files.png" , "", "r_icon", "file", "WIDTH=24"); ?></a></td>
                                <td><a target="_parent" href="<?php echo $_GET['path']; ?>?id=<?php echo $dataset[0]; ?>&edit=1"><?php echo $dataset[$a]; ?></a></td>
                       <?php }else{ ?>
                                <td><a target="_parent" href="<?php echo $_GET['path']; ?>?id=<?php echo $dataset[0]; ?>&edit=1"><?php echo $dataset[$a]; ?></a></td>

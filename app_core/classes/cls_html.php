@@ -8,8 +8,8 @@
            return "<label>" . $text . "</label>" . "\n";
         }
 
-        public function html_input_text($name, $id, $class, $maxlength, $value, $tabindex, $disabled, $event, $required){
-           return "<input type='text' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " " . $required . " />" . "\n";
+        public function html_input_text($name, $id, $class, $maxlength, $size, $value, $title, $tabindex, $disabled, $event, $required){
+           return "<input type='text' name='" . $name . "' id='" . $id . "' size= " . $size . " class='" . $class . "' value='" . $value . "' title='" . $title . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " " . $required . " />" . "\n";
         }
         
         public function html_input_hidden($name, $value){
@@ -20,8 +20,8 @@
            return "<textarea rows=" . $rows . " cols=" . $cols . " name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " " . $required . "></textarea>" . "\n";
         }
 
-        public function html_input_password($name, $id, $class, $maxlength, $value, $tabindex, $disabled, $event, $required){
-           return "<input type='password' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " " . $required . " />" . "\n";
+        public function html_input_password($name, $id, $class, $maxlength, $value, $title, $tabindex, $disabled, $event, $required){
+           return "<input type='password' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' title='" . $title . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " " . $required . " />" . "\n";
         }
 
         public function html_input_button($type, $name, $id, $class, $value, $tabindex, $disabled, $event){
@@ -68,9 +68,9 @@
 				}
 				$html_select.= '</select>';
 				return $html_select;
-			} 
+		  } 
 			
-			function html_select($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
+		  function html_select($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
 				$html_select = "<select name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
 							
 				foreach ($options as $value => $text) {
@@ -78,7 +78,17 @@
 				}
 				$html_select.= '</select>';
 				return $html_select;
-			}   
+		  } 
+			
+		  function html_multiselect($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
+				$html_select = "<select multiple name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
+							
+				foreach ($options as $value => $text) {
+					$html_select.= '<option value='.$value.'>'.$text.'</option>';
+				}
+				$html_select.= '</select>';
+				return $html_select;
+		  }    
         
         function html_js_header($file){
            return "<script src='" . $file . "' type='text/javascript'></script>" . "\n";

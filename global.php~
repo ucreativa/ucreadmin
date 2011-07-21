@@ -1,22 +1,26 @@
 ﻿<?php
+
   $myhost="http://localhost";
   $myproject="ucreadmin";
-  global $mysite;
   $mysite=$myhost . "/" . $myproject;
   
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
   define('__SITE_PATH', $mysite);
   
   define('__CLS_PATH', __ROOT__ . "/" . $myproject . "/app_core/classes/");
+  define('__PLG_PATH', __ROOT__ . "/" . $myproject . "/app_core/plugins/");
+  define('__PLG_HOST_PATH', $mysite . "/app_core/plugins/");
   define('__MOD_PATH', __ROOT__ . "/" . $myproject . "/app_core/modules/");
   define('__VWS_PATH', __ROOT__ . "/" . $myproject . "/app_core/views/");
   define('__VWS_HOST_PATH', $mysite . "/app_core/views/");
   define('__CTR_PATH', __ROOT__ . "/" . $myproject . "/app_core/controllers/");
   define('__CTR_HOST_PATH', $mysite . "/app_core/controllers/");  
   
+  define('__RSC_PATH', __ROOT__ . "/app_core/resources/");  
   define('__RSC_HOST_PATH', $mysite . "/app_core/resources/");
   define('__RSC_PHO_HOST_PATH', $mysite . "/app_core/resources/photos/");
-  define('__RSC_DOC_HOST_PATH', $mysite . "/app_core/resources/documents/");
+  define('__RSC_FLE_HOST_PATH', $mysite . "/app_core/resources/files/");
+  define('__RSC_TBN_HOST_PATH', $mysite . "/app_core/resources/thumbnails/");
   define('__RSC_IMG_HOST_PATH', $mysite . "/app_core/resources/images/");
    
   define('__CONN_PATH', __ROOT__ . "/" . $myproject . "/app_conn/");
@@ -38,5 +42,6 @@
 		}catch(Exception $e){
 			cls_Message::show_message($e->getMessage(),"warning","");
 	   }
-  } 
+  }
+   
 ?>

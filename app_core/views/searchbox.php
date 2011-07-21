@@ -8,10 +8,11 @@
 	   <?php
 	       echo cls_HTML::html_js_header("//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
+	       echo cls_HTML::html_js_header(__JS_PATH . "jquery.betterTooltip.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       
-	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "','')</script>";
+	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "','S'); </script>";
 	   ?>
 	 <title>Búsqueda</title>   
  </head>
@@ -19,19 +20,23 @@
   <body>
   
 	<div class="general_form_page">
-		<div id="userpage">
-		    <?php echo cls_HTML::html_form_tag("frm_user", "","","post"); ?>
+	
+	<!-- Elemento contenedor de mensajes de usuario -->
+   <div id='msg_box_container'></div>
+   
+		<div id="searchpage">
+		    <?php echo cls_HTML::html_form_tag("frm_search", "","","post");?>
 		    
 				 <fieldset class="groupbox" id="gpb_search">
 		        <legend><?php echo $_GET['title_form']; ?></legend>
 		        <label><?php echo $_GET['label_search']; ?></label>
-		        <?php echo cls_HTML::html_input_text("txt_search","txt_search","search",64,"",1,"","onkeyup=\"ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "',this.value);\"",""); ?>
+		        <?php echo cls_HTML::html_input_text("txt_search","txt_search","search",64,32,"","",1,"","onkeyup=\"ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "',this.value);\"",""); ?>
 				    <br />
 				    <div id="listview">  
 				        <iframe id="form_search" src="searchcore.php" width="100%" height="100%" style="border: 0px;  margin-bottom: 50px;" frameborder="0"></iframe>  
 				    </div>
 				    <div id="action_buttons_form">
-				    <br>
+				    <br>  
 				       <?php echo cls_HTML::html_input_button("button","btn_cancel","btn_cancel","button","Cancelar",2,"","onclick=\"parent.location.href='" . $_GET['path_form'] ."';\""); ?>
 				    </div>
 				 </fieldset> 

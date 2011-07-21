@@ -1,19 +1,19 @@
 ﻿<?php
 
    require_once( __CLS_PATH . "cls_database.php");
+   require_once( __CLS_PATH . "cls_remdatabase.php");
 
 	class cls_Section { 
 	
 	   private $data_provide;
 	 	 
 	   public function __construct(){
-			$this->data_provide=new cls_Database();	   
+			$this->data_provide=new cls_RDatabase();
 	   } 	
 	 
 	   public function get_sectiondata($id_section){    
 	   
 			$result=$this->data_provide->sql_execute("SELECT tbl_sections.section_id,
-																	tbl_sections.tag_fk,
 																	tbl_sections.section_key,
 																	tbl_sections.section_name,
 																	tbl_sections.section_title,
@@ -34,8 +34,7 @@
       
 	      $success=false; 
 			$result=$this->data_provide->sql_execute("INSERT INTO tbl_sections 
-																   (tag_fk,
-																	 section_key,
+																   (section_key,
 																	 section_name,
 																	 section_title,
 																	 section_subtitle,
@@ -47,11 +46,10 @@
                                                     section_status,
                                                     section_created,
                                                     section_modified)
-																	 VALUES ('" . $userdata[0] . "','" . $userdata[1] . "','" . $userdata[2] . "',
-																				'" . $userdata[3] . "','" . $userdata[4] . "','" . $userdata[5] . "',
-																	         '" . $userdata[6] . "','" . $userdata[7] . "','" . $userdata[8] . "',
-																	         '" . $userdata[9] . "','" . $userdata[10] . "'," . $userdata[11] . ",
-																	         " . $userdata[12] . ")");
+																	 VALUES ('" . $sectiondata[1] . "','" . $sectiondata[2] . "','" . $sectiondata[3] . "',
+																				'" . $sectiondata[4] . "','" . $sectiondata[5] . "','" . $sectiondata[6] . "',
+																	         '" . $sectiondata[7] . "','" . $sectiondata[8] . "','" . $sectiondata[9] . "',
+																	         '" . $sectiondata[10] . "','" . date('Y-m-d H:i:s') . "','" . date('Y-m-d H:i:s') . "')");
 			if($result){
 				$success=true;
 			}
@@ -59,22 +57,21 @@
 			 return $success;		                      		                          
       }
       
-      public function update_sectiondata($userdata = array(),$id_section){ 
+      public function update_sectiondata($sectiondata = array(),$id_section){ 
 	   
 	      $success=false; 
 			$result=$this->data_provide->sql_execute("UPDATE tbl_sections 
-																   SET tag_fk = '" . $userdata[0] . "',
-																   section_key = '" . $userdata[1] . "',
-																	section_name = '" . $userdata[2] . "',
-																	section_title = '" . $userdata[3] . "',
-																	section_subtitle = '" . $userdata[4] . "',
-																	section_description = '" . $userdata[5] . "',
-																	section_text = '" . $userdata[6] . "',
-                                                   section_showflag = '" . $userdata[7] . "',
-                                                   section_urlblog = '" . $userdata[8] . "',
-                                                   section_keywords = '" . $userdata[9] . "',
-                                                   section_status = '" . $userdata[10] . "',
-                                                   section_modified = " . $userdata[12] . "
+																   SET section_key = '" . $sectiondata[1] . "',
+																	section_name = '" . $sectiondata[2] . "',
+																	section_title = '" . $sectiondata[3] . "',
+																	section_subtitle = '" . $sectiondata[4] . "',
+																	section_description = '" . $sectiondata[5] . "',
+																	section_text = '" . $sectiondata[6] . "',
+                                                   section_showflag = '" . $sectiondata[7] . "',
+                                                   section_urlblog = '" . $sectiondata[8] . "',
+                                                   section_keywords = '" . $sectiondata[9] . "',
+                                                   section_status = '" . $sectiondata[10] . "',
+                                                   section_modified = '" . date('Y-m-d H:i:s') . "'
 																	WHERE tbl_sections.section_id = " . $id_section);
 			if($result){
 				$success=true;

@@ -11,10 +11,10 @@
      
     <?php echo cls_HTML::html_form_tag("frm_login", "" ,"","post");	 ?>
     <?php echo cls_HTML::html_label_tag("USUARIO:"); ?>
-    <?php echo cls_HTML::html_input_text("txt_user","txt_user","text",64,"",0,"","","required"); ?>
+    <?php echo cls_HTML::html_input_text("txt_user","txt_user","text",64,20,"","Nombre de Usuario",0,"","","required"); ?>
     <br /><br />
     <?php echo cls_HTML::html_label_tag("PASSWORD:"); ?>
-    <?php echo cls_HTML::html_input_password("txt_pssw","txt_pssw","text",64,"",0,"","","required"); ?>
+    <?php echo cls_HTML::html_input_password("txt_pssw","txt_pssw","text",64,"","Contraseña del Usuario",0,"","","required"); ?>
     <br /><br />
     <?php echo cls_HTML::html_input_button("submit","btn_login","btn_login","button","Entrar",0,"",""); ?>
     <br /><br />
@@ -37,3 +37,4 @@
 	   	$ctr_Login->btn_login_click();
 	   }
  ?>
+ 

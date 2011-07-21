@@ -1,15 +1,18 @@
 ﻿﻿<?php
 
-   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreauth/global.php");
-   require_once( __CLS_PATH . "cls_database.php");
+   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
+   require_once( __CLS_PATH . "cls_database.php"); //Conf & Conn Base de datos del administrador
+   require_once( __CLS_PATH . "cls_remdatabase.php"); //Conf & ConnBase de datos del sitio
    require_once( __CLS_PATH . "cls_html.php");
 
 	class cls_Searchbox { 
 	
 	   private $data_provide;
+	   private $remote_data_provide;
 	 	 
 	   public function __construct(){
-			$this->data_provide=new cls_Database();	   
+			$this->data_provide=new cls_Databxase();
+			$this->remote_data_provide=new cls_RDatabase();	   
 	   } 	
 	 
 	   public function show_data($form, $param){ 
@@ -25,6 +28,20 @@
 																			WHERE tbl_users.user_krb_name LIKE '" . $param . "%'");
 					                      		                          
 					return $this->data_provide->sql_get_rows($result);
+			}
+			
+			// Búsqueda establecida con la bd remota del sitio
+			if ($form=="frm_section"){
+					$result=$this->remote_data_provide->sql_execute("SELECT tbl_sections.section_id,
+																			tbl_sections.section_name,
+																			tbl_sections.section_key,
+																			tbl_sections.section_status,
+																			tbl_sections.section_created,
+																			tbl_sections.section_modified
+																			FROM tbl_sections
+																			WHERE tbl_sections.section_name LIKE '" . $param . "%'");
+					                      		                          
+					return $this->remote_data_provide->sql_get_rows($result);
 			}
       }  
       

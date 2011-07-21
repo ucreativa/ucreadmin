@@ -34,6 +34,7 @@ body{
     border: thin solid #CCCCCC;
     padding: 3px;
     margin: 3px;
+    height: 20px;
 }
 
 .search{
@@ -52,12 +53,13 @@ body{
 #control_panel{
 	 background: #FEFEFE;
     position: relative;
-    height: 300px;
+    height: auto;
     width: 540px;
     margin: auto;
     border: 1px solid #625F6E;
     border-top: 30px solid #625F6E;
     padding: 20px;
+    padding-bottom: 80px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -73,12 +75,20 @@ body{
     font-size: 12px; 
 }
 
-.msg_box{
+#msg_box_container{
     position: fixed;
     height: auto;
+    width: auto;
+    right:10px;
+    top:10px;
+    z-index: 100;
+}
+
+.msg_box{
+    position: relative;
+    height: auto;
     width: 400px;
-    margin-left:-210px;
-    left:50%;
+    right:10px;
     border: 1px solid #CCCCCC;
     padding: 10px;
     -moz-border-radius: 5px;
@@ -86,7 +96,6 @@ body{
     border-radius: 5px;
     color: #FFFFFF;
     /*text-shadow: 2px 2px 2px #000;*/
-    top: 0px;
     font-weight: bold;
     text-align: center;
 }
@@ -96,7 +105,7 @@ body{
 }
 
 #success{
-	background: #008030;
+	background: #29CC70;
 }
 
 #warning{
@@ -160,14 +169,14 @@ body{
 #form_base {
 	border: 1px solid #CCCCCC;
    border-top: 30px solid #CCCCCC;
-   padding: 10px;
-   -moz-border-radius: 10px;
-   -webkit-border-radius: 10px;
+   padding: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
 	display: none;
 	position: relative;
 	margin:auto;
-	top: -360px;
-	background: #FFFFFF;
+	top: -280px;
+	background: #333333;
 	z-index:1;
 	box-shadow: 5px 5px 28px #222;
 	-webkit-box-shadow: 5px 5px 28px #222;
@@ -277,6 +286,13 @@ table
 	height: 370px;
 }
 
+#frm_search{
+	background: #FFFFFF;
+	position: relative;
+	width: 550px;
+	color: #000000;
+}
+
 .doc_box
 {
 	position:relative;
@@ -319,8 +335,9 @@ table
 
 .general_form_page{
     font-family: Arial;
-    font-size: 12px;
-    font-weight: bold; 
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
 }
 
 .block_form{
@@ -337,6 +354,18 @@ table
 	position: relative;
    top: -20px;
    padding: 15px;
+}
+
+#block_form_files{
+	position: relative;
+	height: 380px;
+	width:760px;
+	margin-right: -20px;
+	overflow: auto;
+}
+
+#fst_files{
+
 }
 
 #search_content{
