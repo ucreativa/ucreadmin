@@ -2,6 +2,8 @@ body{
 	overflow: hidden;
 }
 
+a {border: none; outline:none;}
+
 #login_page{
     background: #FFFFFF url('../../app_design/img/bg.jpg');
     background-position: top center;
@@ -34,7 +36,7 @@ body{
     border: thin solid #CCCCCC;
     padding: 3px;
     margin: 3px;
-    height: 20px;
+    height: 24px;
 }
 
 .search{
@@ -273,9 +275,9 @@ table
 
 #search_box {
 	border: 2px solid #AAAAAA;
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
-   border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 	position: fixed;
 	margin:auto;
 	top: 0px;
@@ -329,7 +331,7 @@ table
    display: none;
 	position: absolute;
 	right: 10px;
-	top:-25px;
+	top:-22px;
 	z-index:1;
 }
 

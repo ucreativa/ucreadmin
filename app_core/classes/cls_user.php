@@ -1,6 +1,6 @@
 ﻿<?php
 
-   require_once( __CLS_PATH . "cls_database.php");
+    require_once( __CLS_PATH . "cls_database.php");
 
 	class cls_User { 
 	
@@ -11,7 +11,7 @@
 	   } 	
 	 
 	   public function get_userdata($id_user){ 
-	   
+
 			$result=$this->data_provide->sql_execute("SELECT tbl_users.user_id,
 																	tbl_users.user_name,
 																	tbl_users.user_password,

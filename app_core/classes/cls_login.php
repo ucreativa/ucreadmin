@@ -1,6 +1,6 @@
 ﻿<?php
 
-	 require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once( __CLS_PATH . "cls_database.php");
     
     class cls_Login {
@@ -53,12 +53,12 @@
 		 } 
 		 
 		public function logout(){ 
-         session_name("UCREADMIN");
-         $_SESSION['AUTH']="NO";
-         session_destroy();
-         unset($this->auth_pg);
-	   	$this->conn_status=false;
-	   	header("Location:" . __SITE_PATH);
+           session_name("UCREADMIN");
+           $_SESSION['AUTH']="NO";
+           session_destroy();
+           unset($this->auth_pg);
+  	       $this->conn_status=false;
+  	       header("Location:" . __SITE_PATH);
 		}
 		  
     }
