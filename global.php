@@ -102,6 +102,7 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   //listado de parámetros globales
   $array_global_settings=array();
 
-  $array_global_settings['site_version']="v1.0";
+  $array_global_settings['sys_name']="UCREADMIN";
+  $array_global_settings['sys_version']="v1.0";
 
 ?>

@@ -4,7 +4,7 @@
    de Usuarios (ADD,EDIT,DELETE,SEARCH) */
    
    require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
-   require_once( __CLS_PATH . "cls_new.php");
+   require_once(__CLS_PATH . "cls_new.php");
      
    class ctr_New {
    	
@@ -12,28 +12,28 @@
       
       public function __construct()
 	   {
-			 $this->newdata=new cls_New();
+		  $this->newdata=new cls_New();
 	   }  
 
 	   public function get_newdata($id_new)
 	   {
-			 return $this->newdata->get_newdata($id_new);
+		  return $this->newdata->get_newdata($id_new);
 	   }  
 	     	  
    	//Si se presiona el botón Agregar Usuario 
 	   function btn_save_click() 
 	   {
-	      $sectioninfo=array();
-	      $id_section=$_POST['txt_id'];    
+	      $newinfo=array();
+	      $id_new=$_POST['txt_id'];
 
-	      $sectioninfo[0]=$_POST['txt_id'];
-	      $sectioninfo[1]=$_POST['txt_title'];
-		  $sectioninfo[2]=$_POST['txt_subtitle'];
-		  $sectioninfo[3]=$_POST['txt_description'];
-          $sectioninfo[4]=$_POST['txt_info'];
-          $sectioninfo[5]=$_POST['txt_source'];
-          $sectioninfo[6]=$_POST['txt_author'];
-	      $sectioninfo[7]=$_POST['cmb_status'];
+	      $newinfo[0]=$_POST['txt_id'];
+	      $newinfo[1]=$_POST['txt_title'];
+		  $newinfo[2]=$_POST['txt_subtitle'];
+		  $newinfo[3]=$_POST['txt_description'];
+          $newinfo[4]=$_POST['txt_info'];
+          $newinfo[5]=$_POST['txt_source'];
+          $newinfo[6]=$_POST['txt_author'];
+	      $newinfo[7]=$_POST['cmb_status'];
 	   	
 	   	/*Si vamos a insertar un registro nuevo (_NEW) o actualizar en caso de que
 	   	$_GET['id'] tenga un valor asignado desde el formulario de búsqueda*/   	

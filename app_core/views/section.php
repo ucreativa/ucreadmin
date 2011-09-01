@@ -11,19 +11,25 @@
 <html>
  <head>
 	   <?php
-	       echo cls_HTML::html_js_header("//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
+	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-1.6.2.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery.betterTooltip.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
-          echo cls_HTML::html_js_header(__JS_PATH . "ckeditor/ckeditor_basic.js");
+           echo cls_HTML::html_js_header(__JS_PATH . "ckeditor/ckeditor_basic.js");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "tooltip/theme/style_tooltip.css","screen");
 	   ?>
-	 <title>UCREADMIN v1.0</title>   
+	 <title><? echo $array_global_settings['sys_name'] . " " . $array_global_settings['sys_version']; ?></title>
  </head>
 
   <body>
-  
+
+    <script>
+      $(document).ready(function() {
+		$('.text').betterTooltip({speed: 150, delay: 300});
+      });
+    </script>
+
 	<div class="general_form_page">
 	
 	<!-- Elemento contenedor de mensajes de usuario -->
@@ -63,7 +69,7 @@
 				    <br /><br />
 				    <?php echo cls_HTML::html_label_tag("URL blog:"); ?>
 				    <br />
-				    <?php echo cls_HTML::html_input_text("txt_urlblog","txt_urlblog","text",128,20,"","URL BLOG",7,"","","required"); ?>
+				    <?php echo cls_HTML::html_input_text("txt_urlblog","txt_urlblog","text",128,20,"","URL BLOG",7,"","",""); ?>
                 <br />
 				 </div>
 			    <div class="block_form">
@@ -80,7 +86,6 @@
 				    <?php echo cls_HTML::html_label_tag("Texto:"); ?>
 				    <br /><br />
 				    <?php echo cls_HTML::html_textarea(4,30,"txt_info","txt_info","ckeditor","",11,20,"","",""); ?>
-
 				 </div>
 			 </fieldset> 
 	 		 <div id="action_buttons_form">
@@ -123,7 +128,7 @@
 		  			         $('#txt_name').attr('value','" . $section_data[0][2] . "');
 								$('#txt_title').attr('value','" . $section_data[0][3] . "');
 								$('#txt_subtitle').attr('value','" . $section_data[0][4] . "');
-								$('#txt_description').attr('value','" . $section_data[0][5] . "');
+								$('#txt_description').attr('value'," . json_encode($section_data[0][5]) . ");
 								$('#txt_info').attr('value'," . json_encode($section_data[0][6]) . ");
 		            		$('#cmb_showflag').attr('value','" . $section_data[0][7] . "');
 								$('#txt_urlblog').attr('value','" . $section_data[0][8] . "');

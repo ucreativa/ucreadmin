@@ -48,7 +48,7 @@
 																	 VALUES ('" . $sectiondata[1] . "','" . $sectiondata[2] . "','" . $sectiondata[3] . "',
 																				'" . $sectiondata[4] . "','" . $sectiondata[5] . "','" . $sectiondata[6] . "',
 																	         '" . $sectiondata[7] . "','" . $sectiondata[8] . "','" . $sectiondata[9] . "',
-																	         '" . $sectiondata[10] . "','" . date('Y-m-d H:i:s') . "','" . date('Y-m-d H:i:s') . "')");
+																	         '" . $sectiondata[10] . "','" . date('Y-m-d') . "','" . date('Y-m-d') . "')");
 			if($result){
 				$success=true;
 			}
@@ -70,7 +70,7 @@
                                                                     section_urlblog = '" . $sectiondata[8] . "',
                                                                     section_keywords = '" . $sectiondata[9] . "',
                                                                     section_status = '" . $sectiondata[10] . "',
-                                                                    section_modified = '" . date('Y-m-d H:i:s') . "'
+                                                                    section_modified = '" . date('Y-m-d') . "'
 																	WHERE tbl_sections.section_id = " . $id_section);
 			if($result){
 				$success=true;

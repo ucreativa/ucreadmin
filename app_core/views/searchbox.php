@@ -12,7 +12,7 @@
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       
-	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "','S'); </script>";
+	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "',''); </script>";
 	   ?>
 	 <title>Búsqueda</title>   
  </head>

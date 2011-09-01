@@ -57,7 +57,7 @@ function setear_calendario(mes,anio){
 }
 
 function setPeriodo(fecha,txt){
-    $(document).ready(function() {      
+    $(document).ready(function() {
         var year = parseFloat(fecha.substring(fecha.length,fecha.length-4));
         $('#'+txt.id).attr('Value',(year + "-" + (year*1+1)));
     });
@@ -286,12 +286,3 @@ function hidden_submenu(){
           $("#sm_"+i).fadeOut(400);
    }
 }
-
-$(function() {
-		$( "#form_base" ).draggable();
-		$('.text').betterTooltip({speed: 150, delay: 300});
-});
-
-
-
-

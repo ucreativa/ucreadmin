@@ -11,7 +11,7 @@
 <html>
  <head>
 	   <?php
-	       echo cls_HTML::html_js_header("//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
+	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-1.6.2.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery.betterTooltip.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
@@ -19,11 +19,17 @@
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "tooltip/theme/style_tooltip.css","screen");
 	   ?>
-	 <title>UCREADMIN v1.0</title>   
+	 <title><? echo $array_global_settings['sys_name'] . " " . $array_global_settings['sys_version']; ?></title>
  </head>
 
   <body>
-  
+
+    <script>
+      $(document).ready(function() {
+		$('.text').betterTooltip({speed: 150, delay: 300});
+      });
+    </script>
+
 	<div class="general_form_page">
 
 	<!-- Elemento contenedor de mensajes de usuario -->
@@ -86,34 +92,34 @@
 		   if(isset($_POST['btn_new'])){
 		   	$ctr_New->btn_new_click();
 		   }
-		    
+
 		   if(isset($_POST['btn_save'])){
 		   	$ctr_New->btn_save_click();
 		   }
 		   
 		   if(isset($_POST['btn_search'])){
 		   	   $search=new cls_Searchbox();
-		       echo $search->show_searchbox(__VWS_HOST_PATH . "section.php", "Búsqueda de Noticias", "&nbsp;&nbsp;Digite el tag, la fecha o el Título de la Noticia:", "new.php", "frm_new");
+		       echo $search->show_searchbox(__VWS_HOST_PATH . "new.php", "Búsqueda de Noticias", "&nbsp;&nbsp;Digite el tag, la fecha o el Título de la Noticia:", "new.php", "frm_new");
 		   }
 		   
 		   
 		   /*Procedemos a llenar el formulario con los datos traídos del formulario
 		    de búsqueda */
-		    
+
 		  	if(isset($_GET['edit']) && isset($_GET['id'])){
 		  		
 		  		if($_GET['edit']=="1"){
-		  			$new_data=$ctr_New->get_sectiondata($_GET['id']);
+		  			$new_data=$ctr_New->get_newdata($_GET['id']);
 
 		  			echo "<script>
-		  			         $('#txt_id').attr('value','" . $section_data[0][0] . "');
-							 $('#txt_title').attr('value','" . $section_data[0][1] . "');
-							 $('#txt_subtitle').attr('value','" . $section_data[0][2] . "');
-							 $('#txt_description').attr('value','" . $section_data[0][3] . "');
-							 $('#txt_info').attr('value'," . json_encode($section_data[0][4]) . ");
-                             $('#txt_source').attr('value','" . $section_data[0][5] . "');
-                             $('#txt_author').attr('value','" . $section_data[0][6] . "');
-							 $('#cmb_status').attr('value','" . $section_data[0][7] . "');
+		  			         $('#txt_id').attr('value','" . $new_data[0][0] . "');
+							 $('#txt_title').attr('value','" . $new_data[0][1] . "');
+							 $('#txt_subtitle').attr('value','" . $new_data[0][2] . "');
+							 $('#txt_description').attr('value'," . json_encode($new_data[0][3]) . ");
+							 $('#txt_info').attr('value'," . json_encode($new_data[0][4]) . ");
+                             $('#txt_source').attr('value','" . $new_data[0][5] . "');
+                             $('#txt_author').attr('value','" . $new_data[0][6] . "');
+							 $('#cmb_status').attr('value','" . $new_data[0][7] . "');
 		  			     </script>";
 		  		}
 		  		

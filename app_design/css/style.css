@@ -58,8 +58,8 @@ a {border: none; outline:none;}
     height: auto;
     width: 540px;
     margin: auto;
-    border: 1px solid #625F6E;
-    border-top: 30px solid #625F6E;
+    border: 1px solid #035928;
+    border-top: 30px solid #035928;
     padding: 20px;
     padding-bottom: 80px;
     -moz-border-radius: 10px;
@@ -71,7 +71,7 @@ a {border: none; outline:none;}
 }
 
 #cp_page{
-    background: #FFFFFF url('../../app_design/img/bg.jpg');
+    background: #FFFFFF;
     background-position: top center;
     font-family: Arial;
     font-size: 12px; 
@@ -169,15 +169,15 @@ a {border: none; outline:none;}
 }
 
 #form_base {
-	border: 1px solid #CCCCCC;
-   border-top: 30px solid #CCCCCC;
-   padding: 5px;
+   	border: 1px solid #CCCCCC;
+    border-top: 30px solid #CCCCCC;
+    padding: 5px;
    -moz-border-radius: 5px;
    -webkit-border-radius: 5px;
 	display: none;
 	position: relative;
 	margin:auto;
-	top: -280px;
+	top: -290px;
 	background: #333333;
 	z-index:1;
 	box-shadow: 5px 5px 28px #222;
@@ -243,7 +243,7 @@ a {border: none; outline:none;}
 	cursor :default;
 }
 
-#search_results a, #search_results a:visited, #search_results img 
+#search_results a, #search_results a:visited, #search_results img
 {
 	text-decoration : none;
 	border: none;
@@ -267,7 +267,7 @@ table
 	margin: 5px;
 }
 
-#search_results 
+#search_results
 {
 	position: absolute;
 	width: 100px;

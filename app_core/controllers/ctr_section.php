@@ -9,11 +9,11 @@
    class ctr_Section {
    	
    	private $sectiondata;
-      
+
       public function __construct()
 	   {
 			 $this->sectiondata=new cls_Section(); 
-	   }  
+	   }
 	   
 	   public function get_sectiondata($id_section)
 	   {
@@ -24,16 +24,16 @@
 	   function btn_save_click() 
 	   { 	         
 	      $sectioninfo=array();
-	      $id_section=$_POST['txt_id'];    
+	      $id_section=$_POST['txt_id'];
 	            
 	      $sectioninfo[0]=$_POST['txt_id'];
 	      $sectioninfo[1]=$_POST['txt_key'];
 	      $sectioninfo[2]=$_POST['txt_name'];
 	      $sectioninfo[3]=$_POST['txt_title'];
-			$sectioninfo[4]=$_POST['txt_subtitle'];
-			$sectioninfo[5]=$_POST['txt_description'];
-			$sectioninfo[6]=$_POST['txt_info'];
-			$sectioninfo[7]=$_POST['cmb_showflag'];
+		  $sectioninfo[4]=$_POST['txt_subtitle'];
+		  $sectioninfo[5]=$_POST['txt_description'];
+		  $sectioninfo[6]=$_POST['txt_info'];
+		  $sectioninfo[7]=$_POST['cmb_showflag'];
 	      $sectioninfo[8]=$_POST['txt_urlblog'];
 	      $sectioninfo[9]=$_POST['txt_keywords'];
 	      $sectioninfo[10]=$_POST['cmb_status']; 	

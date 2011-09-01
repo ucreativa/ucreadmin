@@ -14,7 +14,7 @@
 			$this->data_provide=new cls_Database();
 			$this->remote_data_provide=new cls_RDatabase();	   
 	   } 	
-	 
+
 	   public function show_data($form, $param){ 
 	   
 	      if ($form=="frm_user"){
@@ -40,7 +40,23 @@
 																			tbl_sections.section_modified
 																			FROM tbl_sections
 																			WHERE tbl_sections.section_name LIKE '" . $param . "%'");
-					                      		                          
+
+					return $this->remote_data_provide->sql_get_rows($result);
+			}
+
+            			// Búsqueda establecida con la bd remota del sitio
+			if ($form=="frm_new"){
+					$result=$this->remote_data_provide->sql_execute("SELECT tbl_news.new_id,
+                															tbl_news.new_title,
+                															tbl_news.new_description,
+                															tbl_news.new_status,
+																			tbl_news.new_created,
+																			tbl_news.new_modified
+																			FROM tbl_news
+																			WHERE tbl_news.new_created LIKE '" . $param . "%'
+                                                                            OR tbl_news.new_created LIKE '" . $param . "%'
+                                                                            OR tbl_news.new_title LIKE '%" . $param . "%'");
+
 					return $this->remote_data_provide->sql_get_rows($result);
 			}
       }  

@@ -4,7 +4,7 @@
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
     require(__CTR_PATH . "ctr_section.php");
-    	
+
 	 //Declaramos el controlador de la vista actual el cual contiene las acciones a ejecutar
     $ctr_Section=new ctr_Section();
 ?>
@@ -12,7 +12,7 @@
 <html>
  <head>
 	   <?php
-	       echo cls_HTML::html_js_header("//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
+	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-1.6.2.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery.betterTooltip.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
@@ -20,7 +20,7 @@
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "tooltip/theme/style_tooltip.css","screen");
 	   ?>
-	 <title>UCREADMIN v1.0</title>
+	 <title><? echo $array_global_settings['sys_name'] . " " . $array_global_settings['sys_version']; ?></title>
  </head>
 
   <body>
