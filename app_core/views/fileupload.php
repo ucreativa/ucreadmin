@@ -32,66 +32,14 @@
    
 		<div id="userpage">
 		    <?php //echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
-		    
+
 		    <fieldset class="groupbox" id="fst_files"> <legend>ARCHIVOS</legend>
-			    <div class="block_form" id="block_form_files">							
+			    <div class="block_form" id="block_form_files">
 			      <?php include_once(__PLG_PATH . "/upload_files/base/index.php"); ?>
 				 </div>
-			 </fieldset> 
-	 		 <div id="action_buttons_form">
-			    <?php echo cls_HTML::html_input_button("submit","btn_new","btn_new","button","Nuevo",9,"","onclick=\"$('#frm_user').attr('novalidate','novalidate');\""); ?>
-			    <?php echo cls_HTML::html_input_button("submit","btn_save","btn_save","button","Guardar",10,"",""); ?>
-			    <?php echo cls_HTML::html_input_button("submit","btn_search","btn_search","button","Buscar",12,"","onclick=\"$('#frm_user').attr('novalidate','novalidate');\""); ?>
-			    <br />
-		   </div>
+			 </fieldset>
 		    <?php // echo cls_HTML::html_form_end(); ?>
 		</div>
-		   
-      <?php
-	      //Eventos click de los botones de acción
-	      
-		   if(isset($_POST['btn_new'])){
-		   	$ctr_Section->btn_new_click();
-		   }
-		    
-		   if(isset($_POST['btn_save'])){
-		   	$ctr_Section->btn_save_click();
-		   }
-		   
-		   if(isset($_POST['btn_search'])){
-		   	 $search=new cls_Searchbox();
-		       echo $search->show_searchbox(__VWS_HOST_PATH . "section.php", "Búsqueda de Secciones", "&nbsp;&nbsp;Digite el nombre de la Sección:", "section.php", "frm_section");
-		   }
-		   
-		   
-		   /*Procedemos a llenar el formulario con los datos traídos del formulario
-		    de búsqueda */
-		    
-		  	if(isset($_GET['edit']) && isset($_GET['id'])){
-		  		
-		  		if($_GET['edit']=="1"){
-		  			$section_data=$ctr_Section->get_sectiondata($_GET['id']);
-
-		  			echo "<script>
-		  			        $('#txt_id').attr('value','" . $section_data[0][0] . "');
-		  			        $('#txt_key').attr('value','" . $section_data[0][1] . "');
-		  			        $('#txt_name').attr('value','" . $section_data[0][2] . "');
-    						$('#txt_title').attr('value','" . $section_data[0][3] . "');
-    						$('#txt_subtitle').attr('value','" . $section_data[0][4] . "');
-    						$('#txt_description').attr('value','" . $section_data[0][5] . "');
-    						$('#txt_info').attr('value'," . json_encode($section_data[0][6]) . ");
-		            		$('#cmb_showflag').attr('value','" . $section_data[0][7] . "');
-							$('#txt_urlblog').attr('value','" . $section_data[0][8] . "');
-							$('#txt_keywords').attr('value','" . $section_data[0][9] . "');
-							$('#cmb_status').attr('value','" . $section_data[0][10] . "');
-		  			      </script>";	  
-		  		}
-		  		
-		   }else{
-		  			echo "<script>$('#txt_id').attr('value','_NEW');</script>";
-		  	}  
-
-     ?>
 	</div>
   </body>
  </html>

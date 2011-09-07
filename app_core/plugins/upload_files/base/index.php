@@ -1,4 +1,4 @@
- <?php include_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php"); ?>
+﻿ <?php include_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php"); ?>
  <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); ?>
  <?php require_once(__CLS_PATH . "cls_html.php"); 
   
@@ -22,7 +22,7 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
-<title>jQuery File Upload Example</title>
+<title>jQuery File Upload</title>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">
 <?php echo cls_HTML::html_css_header(__PLG_HOST_PATH . $plugin_name . "/jquery.fileupload-ui.css","screen"); ?>
 <?php echo cls_HTML::html_css_header(__PLG_HOST_PATH . $plugin_name . "/base/style.css","screen"); ?>
@@ -30,15 +30,19 @@
 </head>
 <body>
 <div id="fileupload">
-    <form action="<?php echo $uploadfile_path;?>" method="POST" enctype="multipart/form-data">
+	<!-- Elemento contenedor de mensajes de usuario -->
+   <div id='msg_box_container'></div>
+
+    <form id="frm_file" action="<?php echo $uploadfile_path . "?form=".$_GET['form']."&id=".$_GET['id'];?>" method="POST" enctype="multipart/form-data">
+
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">
                 <span>Agregar Archivos...</span>
                 <input type="file" name="files[]" multiple>
             </label>
-            <button type="submit" class="start">Iniciar</button>
+            <!--<button type="submit" class="start">Iniciar</button>
             <button type="reset" class="cancel">Cancelar</button>
-            <button type="button" class="delete">Eliminar</button>
+            <button type="button" class="delete">Eliminar</button> -->
         </div>
     </form>
     <div class="fileupload-content">
@@ -46,6 +50,7 @@
         <div class="fileupload-progressbar"></div>
     </div>
 </div>
+<!--$(document).ready(function() { $('table.start').css('display','none');}); -->
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
@@ -56,20 +61,20 @@
                 {{if error === 'maxFileSize'}}Archivo demasiado grande
                 {{else error === 'minFileSize'}}Archivo demasiado pequeño
                 {{else error === 'acceptFileTypes'}}Tipo de archivo no permitido
-                {{else error === 'maxNumberOfFiles'}}Máximo número de archivos permitidos 
+                {{else error === 'maxNumberOfFiles'}}Máximo número de archivos permitidos
                 {{else}}${error}
                 {{/if}}
             </td>
         {{else}}
             <td class="progress"><div></div></td>
-            <td class="start"><button>Iniciar</button></td>
+            <td class="start"><button onclick='showclose_form_datafile(this,1);'>Iniciar</button></td>
         {{/if}}
         <td class="cancel"><button>Cancelar</button></td>
     </tr>
 </script>
 <script id="template-download" type="text/x-jquery-tmpl">
     <tr class="template-download{{if error}} ui-state-error{{/if}}">
-        {{if error}}  
+        {{if error}}
             <td></td>
             <td class="name">${name}</td>
             <td class="size">${sizef}</td>
@@ -103,16 +108,74 @@
             <td colspan="2"></td>
         {{/if}}
         <td class="delete">
-            <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+            <button data-type="${delete_type}" data-url="${delete_url+'&id=<? echo $_GET['id'];?>&form=<? echo $_GET['form'];?>'}">Delete</button>
         </td>
     </tr>
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
+<script>
+
+function showclose_form_datafile(element,flag){
+ if(flag==1){
+   $(element).bind('click', function (event) {
+        $("#file_data_box").css("display","block");
+        $("#inactive_base").css("display","block");
+        $("#block_form_files").css("overflow","hidden");
+        return false;
+   });
+ }else{
+        $("#file_data_box").css("display","none");
+        $("#inactive_base").css("display","none");
+        $("#block_form_files").css("overflow","auto");
+        return element;
+ }
+}
+
+function insert_datafile(){
+   var element=showclose_form_datafile(element,0);
+   $(element).bind('click', function (event) {
+           alert(element); 
+        return true;
+   });
+}
+
+
+</script>
 <?php echo cls_HTML::html_js_header(__PLG_HOST_PATH . $plugin_name . "/jquery.iframe-transport.js","screen"); ?>
 <?php echo cls_HTML::html_js_header(__PLG_HOST_PATH . $plugin_name . "/jquery.fileupload.js","screen"); ?>
 <?php echo cls_HTML::html_js_header(__PLG_HOST_PATH . $plugin_name . "/jquery.fileupload-ui.js","screen"); ?>
 <?php echo cls_HTML::html_js_header(__PLG_HOST_PATH . $plugin_name . "/base/application.js","screen"); ?>
-</body> 
+
+    <div class="form_data_box" id="file_data_box">
+          	<div id="userpage">
+            <br /><br />
+		    <?php echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
+		    <fieldset class="groupbox" ><legend>DATOS DE ARCHIVO</legend>
+			    <div class="block_form">
+                    <?php echo cls_HTML::html_input_hidden("txt_id",""); ?>
+				    <?php echo cls_HTML::html_label_tag("Key Words:"); ?>
+				    <br />
+				    <?php echo cls_HTML::html_input_text("txt_keywords","txt_keywords","text",128,20,"","Keywords",8,"","","required"); ?>
+				    <br /><br />
+				    <?php echo cls_HTML::html_label_tag("Estado:"); ?>
+				    <?php echo cls_HTML::html_select("cmb_status", array('A' => 'Activa', 'I' => 'Inactiva'), "cmb_status", "combo", 9, "", ""); ?>
+				    &nbsp;&nbsp;&nbsp;
+				    <?php echo cls_HTML::html_label_tag("Mostrar abierta al inicio:"); ?>
+				    <?php echo cls_HTML::html_select("cmb_showflag", array(0 => 'No', 1 => 'Sí'), "cmb_showflag", "combo", 10, "", ""); ?>
+				    <br />
+				</div>
+			 </fieldset>
+	 		 <div id="action_buttons_form">
+			    <?php echo cls_HTML::html_input_button("button","btn_save","btn_save","button","Guardar",9,"","onclick=\"$('#frm_file').attr('novalidate','novalidate');$('#b1').click();insert_datafile();\""); ?>
+			    <?php echo cls_HTML::html_input_button("button","btn_cancel","btn_cancel","button","Cancelar",12,"","onclick=\"$('#frm_file').attr('novalidate','novalidate');showclose_form_datafile(this,0);\""); ?>
+			    <br />
+		   </div>
+		    <?php echo cls_HTML::html_form_end(); ?>
+		</div>
+    </div>
+    <div id="inactive_base"></div>
+</body>
 </html>

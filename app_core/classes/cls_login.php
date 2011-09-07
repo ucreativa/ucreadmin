@@ -5,13 +5,13 @@
     
     class cls_Login {
     	
-		 var $auth_pg;
-		 var $conn_status;
+	   var $auth_db;
+	   var $conn_status;
        private $data_provide;
        private $user_id;
-		 
+
 		 function __construct(){
-         $this->auth_pg=new cls_Database();
+         $this->auth_db=new cls_Database();
 			$this->data_provide=new cls_Database();
 		 }
 		 
@@ -22,8 +22,8 @@
 		 //Verifica la conexión con postgre y la autentificación
 		 public function login($user, $pssw){
  
-		 	if($this->auth_pg->is_connect() && cls_Login::authenticate($user, $pssw)){
-		 		$this->conn_status=true;	
+		 	if($this->auth_db->is_connect() && cls_Login::authenticate($user, $pssw)){
+		 		$this->conn_status=true;
 		   }else{
 		   	$this->conn_status=false;
 		   }

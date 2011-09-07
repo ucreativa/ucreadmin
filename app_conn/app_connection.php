@@ -17,13 +17,13 @@
           $this->set_dbsupported();
 
           $this->selected_location="local";   //set 'local' para pruebas locales
-          $this->selected_database=$this->database[1]; //[0] mysql, [1] postgre ...
+          $this->selected_database=$this->database[0]; //[0] mysql, [1] postgre ...
 
  	      if($this->selected_location=="local"){
      		   $this->host="localhost";
     		   $this->dbname="bd_ucreadmin";
-    		   $this->port="5432";
-    		   $this->user="postgres";
+    		   $this->port="";
+    		   $this->user="root";
     		   $this->password="123";
            }else{
                $this->host="localhost";

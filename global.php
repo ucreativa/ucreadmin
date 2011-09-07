@@ -19,6 +19,7 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
 
    // ------ Variables estáticas que definen las rutas absolutas del proyecto -------
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
+  define('__HOST__', "http://10.50.1.138");
   define('__SITE_PATH', $mysite);
 
   define('__CLS_PATH', __ROOT__ . "/" . $myproject . "/app_core/classes/");
@@ -34,6 +35,7 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   define('__RSC_HOST_PATH', $mysite . "/app_core/resources/");
   define('__RSC_PHO_HOST_PATH', $mysite . "/app_core/resources/photos/");
   define('__RSC_FLE_HOST_PATH', $mysite . "/app_core/resources/files/");
+  define('__RSC_FLE_PATH',  __ROOT__  . "/" . $myproject . "/app_core/resources/files/");
   define('__RSC_TBN_HOST_PATH', $mysite . "/app_core/resources/thumbnails/");
   define('__RSC_IMG_HOST_PATH', $mysite . "/app_core/resources/images/");
 
