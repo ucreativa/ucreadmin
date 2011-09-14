@@ -1,5 +1,6 @@
 <?php
  require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
+
 /*
  * jQuery File Upload Plugin PHP Example 5.2.2
  * https://github.com/blueimp/jQuery-File-Upload
@@ -21,6 +22,7 @@ class UploadHandler
     var $form_base;
     var $id;
     var $section;
+    var $filecore;
 
     function __construct($options=null) {
         $this->upload_dir=str_replace("ucreadmin","ucreasite",__RSC_FLE_PATH);

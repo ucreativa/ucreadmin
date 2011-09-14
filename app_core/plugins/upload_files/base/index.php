@@ -1,9 +1,8 @@
 ﻿ <?php include_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php"); ?>
  <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); ?>
- <?php require_once(__CLS_PATH . "cls_html.php"); 
-  
-  $plugin_name="upload_files"; 
- 
+ <?php require_once(__CLS_PATH . "cls_html.php");
+
+  $plugin_name="upload_files";
  ?>
 
 <!DOCTYPE HTML>
@@ -26,7 +25,8 @@
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">
 <?php echo cls_HTML::html_css_header(__PLG_HOST_PATH . $plugin_name . "/jquery.fileupload-ui.css","screen"); ?>
 <?php echo cls_HTML::html_css_header(__PLG_HOST_PATH . $plugin_name . "/base/style.css","screen"); ?>
-<?php $uploadfile_path=__PLG_HOST_PATH . $plugin_name . "/base/upload.php";?>
+<?php $uploadfile_path=__PLG_HOST_PATH . $plugin_name . "/base/upload.php";
+      echo cls_HTML::html_js_header(__JS_PATH . "functions.js"); ?>
 </head>
 <body>
 <div id="fileupload">
@@ -40,6 +40,7 @@
                 <span>Agregar Archivos...</span>
                 <input type="file" name="files[]" multiple>
             </label>
+            <label><? echo cls_HTML::html_input_checkbox("chk_delete", "check", "0", 6, "", "onchange='enable_delete(this);'");?><span>Habilitar opción de eliminar</span></label>
             <!--<button type="submit" class="start">Iniciar</button>
             <button type="reset" class="cancel">Cancelar</button>
             <button type="button" class="delete">Eliminar</button> -->
@@ -50,7 +51,7 @@
         <div class="fileupload-progressbar"></div>
     </div>
 </div>
-<!--$(document).ready(function() { $('table.start').css('display','none');}); -->
+
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
@@ -67,9 +68,10 @@
             </td>
         {{else}}
             <td class="progress"><div></div></td>
-            <td class="start"><button onclick='showclose_form_datafile(this,1);'>Iniciar</button></td>
+            <td class="start"><button id=${name.replace(' ','_').replace('.','_')+''} style="visibility:hidden;">Iniciar</button></td>
+            <td class="data"><button title=${name} class="btn_data" id=${name.replace(' ','_').replace('.','_')+'_data'} onclick="showclose_form_datafile(this,1,this.title);">data</button></td>
         {{/if}}
-        <td class="cancel"><button>Cancelar</button></td>
+        <td class="cancel"><button id=${name.replace(' ','_').replace('.','_')+'_cancel'} >Cancelar</button></td>
     </tr>
 </script>
 <script id="template-download" type="text/x-jquery-tmpl">
@@ -107,41 +109,101 @@
             <td class="size">${sizef}</td>
             <td colspan="2"></td>
         {{/if}}
+        <td class="data"><button title=${name} class="btn_data_edit" id=${name.replace(' ','_').replace('.','_')+'_data_edit'} onclick="showclose_form_datafile(this,1,this.title);">data</button></td>
         <td class="delete">
-            <button data-type="${delete_type}" data-url="${delete_url+'&id=<? echo $_GET['id'];?>&form=<? echo $_GET['form'];?>'}">Delete</button>
+            <button class="delete_button" title=${name} style="visibility:hidden;" data-type="${delete_type}" data-url="${delete_url+'&id=<? echo $_GET['id'];?>&form=<? echo $_GET['form'];?>'}" onclick="delete_img(this.title);" >Delete</button>
         </td>
     </tr>
 </script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-
 <script>
 
-function showclose_form_datafile(element,flag){
+ //Activamos la validación del formulario
+ $(document).ready(function(){
+   $("#inactive_base").css("display","block");
+   $("#inactive_base").css("visibility","hidden");
+  });
+var id_button=null;
+
+function showclose_form_datafile(element,flag,filename){
  if(flag==1){
-   $(element).bind('click', function (event) {
-        $("#file_data_box").css("display","block");
-        $("#inactive_base").css("display","block");
-        $("#block_form_files").css("overflow","hidden");
-        return false;
-   });
+    $("#txt_id").attr('value','_NEW');
+
+    $("input#txt_filename").attr('value','');
+    $("input#txt_author").attr('value','');
+    $("input#txt_date").attr('value','');
+    $("input#txt_type").attr('value','');
+    $("#txt_description").attr('value','');
+    $("#cmb_status").attr('value','A');
+    $("#cmb_first").attr('value','N');
+
+    //Si hacemos click en el botón de datos de imagen para actualizar
+    if($(element).attr('class')=="btn_data_edit"){
+        $("#file_process").load("processfile.php", {filename: filename}, function(){
+        });
+        //Cambiamos el valor del campo de referencia para saber si insertamos o actualizamos
+        $("#txt_id").attr('value','_EDIT');
+    }
+
+    $("#file_data_box").css("visibility","visible");
+    $("#inactive_base").css("visibility","visible");
+    $("#block_form_files").css("overflow","hidden");
+    $("#txt_filename").attr('value',filename);
+    id_button=element.id;
+
  }else{
-        $("#file_data_box").css("display","none");
-        $("#inactive_base").css("display","none");
-        $("#block_form_files").css("overflow","auto");
-        return element;
+    $("#file_data_box").css("visibility","hidden");
+    $("#inactive_base").css("visibility","hidden");
+    $("#block_form_files").css("overflow","auto");
  }
 }
 
-function insert_datafile(){
-   var element=showclose_form_datafile(element,0);
-   $(element).bind('click', function (event) {
-           alert(element); 
-        return true;
+function apply_datafile(){
+    var id = $("input#txt_id").val();
+    var filename = $("input#txt_filename").val();
+    var author = $("input#txt_author").val();
+    var date = $("input#txt_date").val();
+    var type = $("input#txt_type").val();
+    var description = $("#txt_description").val();
+    var status = $("#cmb_status").val();
+    var first = $("#cmb_first").val();
+    var form = $("#txt_form").val();
+    var id_fk = $("#txt_id_fk").val();
+
+    if(author=="" || date=="" || description==""){
+       alert('Se deben llenar todos los campos');
+    }else{
+        $("#file_data_box").css("visibility","hidden");
+        $("#inactive_base").css("visibility","hidden");
+        $("#block_form_files").css("overflow","auto");
+        $("#file_process").load("processfile.php", {txt_id_fk: id_fk, txt_form: form, txt_id: id, txt_filename: filename, txt_author: author, txt_date: date, txt_type: type, txt_description: description, cmb_status: status, cmb_first: first}, function(){
+        });
+    }
+}
+
+function enable_delete(element){
+   if(element.checked){
+       $('.delete_button').css('visibility','visible');
+    }else{
+       $('.delete_button').css('visibility','hidden');
+    }
+}
+
+function delete_img(filename){
+   var form = $("#txt_form").val();
+   $("#file_process").load("processfile.php", {txt_filename: filename, txt_form: form, delete_file:'delete'}, function(){
    });
 }
 
+$(function() {
+  $("#btn_save").click(function() {
+    // validate and process form here
+     apply_datafile();
+  });
+});
 
 </script>
 <?php echo cls_HTML::html_js_header(__PLG_HOST_PATH . $plugin_name . "/jquery.iframe-transport.js","screen"); ?>
@@ -155,27 +217,39 @@ function insert_datafile(){
 		    <?php echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
 		    <fieldset class="groupbox" ><legend>DATOS DE ARCHIVO</legend>
 			    <div class="block_form">
+                    <?php echo cls_HTML::html_input_hidden("txt_form",$_GET['form']); ?>
                     <?php echo cls_HTML::html_input_hidden("txt_id",""); ?>
-				    <?php echo cls_HTML::html_label_tag("Key Words:"); ?>
+                    <?php echo cls_HTML::html_input_hidden("txt_id_fk",$_GET['id']); ?>
+                    <?php echo cls_HTML::html_input_hidden("txt_filename",""); ?>
+                    <?php echo cls_HTML::html_label_tag("Autor:"); ?>
 				    <br />
-				    <?php echo cls_HTML::html_input_text("txt_keywords","txt_keywords","text",128,20,"","Keywords",8,"","","required"); ?>
+				    <?php echo cls_HTML::html_input_text("txt_author","txt_author","required text",64,20,"","Autor",1,"","",""); ?>
+				    <br /><br />
+                    <?php echo cls_HTML::html_label_tag("Fecha:"); ?>
+				    <br />
+                    <?php echo cls_HTML::html_input_text("txt_date","txt_date","required text",10,10,"","Fecha",2,"","",""); ?>
+				    <br /><br />
+                    <?php echo cls_HTML::html_input_hidden("txt_type","img/???"); ?>
+                    <?php echo cls_HTML::html_label_tag("Descripción:"); ?>
+				    <br />
+				    <?php echo cls_HTML::html_textarea(4,35,"txt_description","txt_description","textarea","",3,"","",""); ?>
 				    <br /><br />
 				    <?php echo cls_HTML::html_label_tag("Estado:"); ?>
-				    <?php echo cls_HTML::html_select("cmb_status", array('A' => 'Activa', 'I' => 'Inactiva'), "cmb_status", "combo", 9, "", ""); ?>
+				    <?php echo cls_HTML::html_select("cmb_status", array('A' => 'Activa', 'I' => 'Inactiva'), "cmb_status", "combo", 4, "", ""); ?>
 				    &nbsp;&nbsp;&nbsp;
-				    <?php echo cls_HTML::html_label_tag("Mostrar abierta al inicio:"); ?>
-				    <?php echo cls_HTML::html_select("cmb_showflag", array(0 => 'No', 1 => 'Sí'), "cmb_showflag", "combo", 10, "", ""); ?>
+				    <?php echo cls_HTML::html_label_tag("Mostrar de primero:"); ?>
+				    <?php echo cls_HTML::html_select("cmb_first", array('N' => 'No', 'Y' => 'Sí'), "cmb_first", "combo", 5, "", ""); ?>
 				    <br />
-				</div>
+                </div>
 			 </fieldset>
 	 		 <div id="action_buttons_form">
-			    <?php echo cls_HTML::html_input_button("button","btn_save","btn_save","button","Guardar",9,"","onclick=\"$('#frm_file').attr('novalidate','novalidate');$('#b1').click();insert_datafile();\""); ?>
-			    <?php echo cls_HTML::html_input_button("button","btn_cancel","btn_cancel","button","Cancelar",12,"","onclick=\"$('#frm_file').attr('novalidate','novalidate');showclose_form_datafile(this,0);\""); ?>
+			    <?php echo cls_HTML::html_input_button("button","btn_save","btn_save","button","Guardar",9,"",""); ?>
+			    <?php echo cls_HTML::html_input_button("button","btn_cancel","btn_cancel","button","Cancelar",12,"","onclick=\"$('#frm_file').attr('novalidate','novalidate');showclose_form_datafile(this,0,'');\""); ?>
 			    <br />
-		   </div>
+		     </div>
 		    <?php echo cls_HTML::html_form_end(); ?>
 		</div>
     </div>
-    <div id="inactive_base"></div>
+    <div style="visibility:hidden;"id='file_process'></div>
 </body>
 </html>

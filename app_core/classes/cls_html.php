@@ -60,6 +60,10 @@
            return "<input type='file' accept='" . $accept . "' name='" . $name . "' id='" . $id . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' maxlength='"  . $maxlength . "' " . $disabled . " " . $event . " />" . "\n";
         }
 
+        public function html_input_checkbox($name, $class, $value, $tabindex, $disabled, $event){
+           return "<input type='checkbox' name='" . $name . "' id='" . $name . "' class='" . $class . "' value='" . $value . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " />" . "\n";
+        }
+
         function html_select_db($name, $options = array(), $id, $class, $tabindex, $disabled, $event) {
 				$html_select = "<select name='" . $name . "' id='" . $id . "' class='" . $class . "' tabindex='" . $tabindex . "' " . $disabled . " " . $event . " >";
 

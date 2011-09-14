@@ -31,10 +31,10 @@
     </script>
 
 	<div class="general_form_page">
-	
+
 	<!-- Elemento contenedor de mensajes de usuario -->
    <div id='msg_box_container'></div>
-   
+
 		<div id="userpage">
 		    <?php echo cls_HTML::html_form_tag("frm_section", "","","post"); ?>
 		    
@@ -99,15 +99,15 @@
 		   
       <?php
 	      //Eventos click de los botones de acción
-	      
+
 		   if(isset($_POST['btn_new'])){
 		   	$ctr_Section->btn_new_click();
 		   }
-		    
+
 		   if(isset($_POST['btn_save'])){
 		   	$ctr_Section->btn_save_click();
 		   }
-		   
+
 		   if(isset($_POST['btn_search'])){
 		   	 $search=new cls_Searchbox();
 		       echo $search->show_searchbox(__VWS_HOST_PATH . "section.php", "Búsqueda de Secciones", "&nbsp;&nbsp;Digite el nombre de la Sección:", "section.php", "frm_section");

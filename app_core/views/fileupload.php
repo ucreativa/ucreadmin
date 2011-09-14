@@ -4,6 +4,7 @@
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
     require(__CTR_PATH . "ctr_section.php");
+    require_once(__CTR_PATH . "ctr_file.php");
 
 	 //Declaramos el controlador de la vista actual el cual contiene las acciones a ejecutar
     $ctr_Section=new ctr_Section();
@@ -37,8 +38,9 @@
 			    <div class="block_form" id="block_form_files">
 			      <?php include_once(__PLG_PATH . "/upload_files/base/index.php"); ?>
 				 </div>
+                     <div id="inactive_base"></div>
 			 </fieldset>
-		    <?php // echo cls_HTML::html_form_end(); ?>
+		    <?php // echo cls_HTML::html_form_end();?>
 		</div>
 	</div>
   </body>

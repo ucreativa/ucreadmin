@@ -1,4 +1,4 @@
-@charset 'UTF-8';
+﻿@charset 'UTF-8';
 /*
  * jQuery File Upload Plugin CSS Example 5.0
  * https://github.com/blueimp/jQuery-File-Upload
@@ -35,9 +35,8 @@ a {
 }
 
 .fileupload-content {
-	  position: relative;
-	  top: -13px;
-	  
+   position: relative;
+   top: -13px;
 }
 
 .form_data_box{
@@ -46,16 +45,17 @@ a {
     padding: 5px;
    -moz-border-radius: 5px;
    -webkit-border-radius: 5px;
-	display: none;
-	position: relative;
+	visibility: hidden;
+	position: fixed;
 	margin:auto;
-	top: -350px;
-    width: 600px;
-    height: 300px;
+	top: 50px;
+    left: 150px;
+    width: 500px;
+    height: 350px;
 	background: #fff;
 	z-index:10;
 	box-shadow: 5px 5px 28px #222;
 	-webkit-box-shadow: 5px 5px 28px #222;
 	-moz-box-shadow: 5px 5px 28px #222;
-    color:#333;   
+    color:#333;
 }
