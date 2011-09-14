@@ -8,7 +8,7 @@
       $filedata_tmp=$ctr_File->get_filedata($_POST['txt_filename']);
 
       //Si la imagen ya existe impide registrarla
-      if($_POST['txt_filename']!=$filedata_tmp['name']){
+      if($_POST['txt_filename']!=$filedata_tmp['name'] || $_POST['edit']=='_EDIT'){
           if($ctr_File->btn_save_click()){
             //Realizamos un click virtual en el botón de subir imagen
             echo "<script>$('#'+id_button.replace('_data', '')).click();</script>";

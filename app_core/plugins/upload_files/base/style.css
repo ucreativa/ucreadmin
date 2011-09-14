@@ -59,3 +59,18 @@ a {
 	-moz-box-shadow: 5px 5px 28px #222;
     color:#333;
 }
+
+.btn_data, .btn_data_edit{
+   background: #EEE center url(images/edit.png) no-repeat;
+   border: 1px solid #ccc;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   position: relative;
+   width: 27px;
+   height: 25px;
+}
+
+.btn_data:hover, .btn_data_edit:hover{
+   border: 1px solid #777;
+   cursor: pointer;
+}

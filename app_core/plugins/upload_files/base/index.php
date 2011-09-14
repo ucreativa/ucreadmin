@@ -69,7 +69,7 @@
         {{else}}
             <td class="progress"><div></div></td>
             <td class="start"><button id=${name.replace(' ','_').replace('.','_')+''} style="visibility:hidden;">Iniciar</button></td>
-            <td class="data"><button title=${name} class="btn_data" id=${name.replace(' ','_').replace('.','_')+'_data'} onclick="showclose_form_datafile(this,1,this.title);">data</button></td>
+            <td class="data"><button title=${name} class="btn_data" id=${name.replace(' ','_').replace('.','_')+'_data'} onclick="showclose_form_datafile(this,1,this.title);"></button></td>
         {{/if}}
         <td class="cancel"><button id=${name.replace(' ','_').replace('.','_')+'_cancel'} >Cancelar</button></td>
     </tr>
@@ -109,7 +109,7 @@
             <td class="size">${sizef}</td>
             <td colspan="2"></td>
         {{/if}}
-        <td class="data"><button title=${name} class="btn_data_edit" id=${name.replace(' ','_').replace('.','_')+'_data_edit'} onclick="showclose_form_datafile(this,1,this.title);">data</button></td>
+        <td class="data"><button title=${name} class="btn_data_edit" id=${name.replace(' ','_').replace('.','_')+'_data_edit'} onclick="showclose_form_datafile(this,1,this.title);"></button></td>
         <td class="delete">
             <button class="delete_button" title=${name} style="visibility:hidden;" data-type="${delete_type}" data-url="${delete_url+'&id=<? echo $_GET['id'];?>&form=<? echo $_GET['form'];?>'}" onclick="delete_img(this.title);" >Delete</button>
         </td>
@@ -126,7 +126,9 @@
    $("#inactive_base").css("display","block");
    $("#inactive_base").css("visibility","hidden");
   });
+
 var id_button=null;
+var edit_new=null;
 
 function showclose_form_datafile(element,flag,filename){
  if(flag==1){
@@ -146,6 +148,30 @@ function showclose_form_datafile(element,flag,filename){
         });
         //Cambiamos el valor del campo de referencia para saber si insertamos o actualizamos
         $("#txt_id").attr('value','_EDIT');
+        edit_new='_EDIT';
+    }else{
+        edit_new='_NEW';
+    }
+
+    switch(filename.substr(-3)){
+      case 'jpg':
+         $("input#txt_type").attr('val','image/jpg');
+      break;
+      case 'peg':
+         $("input#txt_type").attr('val','image/jpg');
+      break;
+      case 'png':
+         $("input#txt_type").attr('val','image/png');
+      break;
+      case 'gif':
+         $("input#txt_type").attr('val','image/gif');
+      break;
+      case 'doc':
+         $("input#txt_type").attr('val','image/doc');
+      break;
+      case 'pdf':
+         $("input#txt_type").attr('val','image/pdf');
+      break;
     }
 
     $("#file_data_box").css("visibility","visible");
@@ -166,12 +192,13 @@ function apply_datafile(){
     var filename = $("input#txt_filename").val();
     var author = $("input#txt_author").val();
     var date = $("input#txt_date").val();
-    var type = $("input#txt_type").val();
+    var type = $("input#txt_type").attr('val');
     var description = $("#txt_description").val();
     var status = $("#cmb_status").val();
     var first = $("#cmb_first").val();
     var form = $("#txt_form").val();
     var id_fk = $("#txt_id_fk").val();
+    var edit=edit_new;
 
     if(author=="" || date=="" || description==""){
        alert('Se deben llenar todos los campos');
@@ -179,7 +206,7 @@ function apply_datafile(){
         $("#file_data_box").css("visibility","hidden");
         $("#inactive_base").css("visibility","hidden");
         $("#block_form_files").css("overflow","auto");
-        $("#file_process").load("processfile.php", {txt_id_fk: id_fk, txt_form: form, txt_id: id, txt_filename: filename, txt_author: author, txt_date: date, txt_type: type, txt_description: description, cmb_status: status, cmb_first: first}, function(){
+        $("#file_process").load("processfile.php", {edit: edit_new, txt_id_fk: id_fk, txt_form: form, txt_id: id, txt_filename: filename, txt_author: author, txt_date: date, txt_type: type, txt_description: description, cmb_status: status, cmb_first: first}, function(){
         });
     }
 }
@@ -229,7 +256,7 @@ $(function() {
 				    <br />
                     <?php echo cls_HTML::html_input_text("txt_date","txt_date","required text",10,10,"","Fecha",2,"","",""); ?>
 				    <br /><br />
-                    <?php echo cls_HTML::html_input_hidden("txt_type","img/???"); ?>
+                    <?php echo cls_HTML::html_input_hidden("txt_type",""); ?>
                     <?php echo cls_HTML::html_label_tag("Descripción:"); ?>
 				    <br />
 				    <?php echo cls_HTML::html_textarea(4,35,"txt_description","txt_description","textarea","",3,"","",""); ?>

@@ -85,8 +85,8 @@ class UploadHandler
                 'thumbnail' => array(
                     'upload_dir' => $this->upload_dir . "thumbs/",
                     'upload_url' => $this->upload_url . "thumbs/",
-                    'max_width' => 100,
-                    'max_height' => 100
+                    'max_width' => 200,
+                    'max_height' => 115
                 )
             )
         );
