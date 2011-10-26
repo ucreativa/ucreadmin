@@ -50,11 +50,12 @@
 			 <div id="cp_icons_panel">
 			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "secciones.png" , "#", "_self" ,"Secciones", "icon_1", "cp_icons", "sections","", "onclick=\"open_form('section.php',840,530);\""); ?>
 			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "noticias.png" , "#", "_self" ,"Noticias", "icon_2", "cp_icons", "news","", "onclick=\"open_form('new.php',840,490);\""); ?>
-                 <?php echo cls_HTML::html_img_link(__IMG_PATH . "carreras.png" , "#", "_self" ,"Carreras", "icon_3", "cp_icons", "carreras","", "onclick=\"open_form('careers.php',680,410);\""); ?>  
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "enlaces.png" , "#", "_self" ,"Links", "icon_4", "cp_icons", "links","", "onclick=\"open_form('links.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "etiquetas.png" , "#", "_self" ,"Tags", "icon_5", "cp_icons", "tags","", "onclick=\"open_form('tags.php',680,410);\""); ?>
-                 <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios.png" , "#", "_self" ,"Usuarios", "icon_6", "cp_icons", "users","", "onclick=\"open_form('users.php',680,410);\""); ?>
-			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "grupos.png" , "#", "_self" ,"Grupos de Usuarios", "icon_7", "cp_icons", "group_users","", "onclick=\"open_form('groups.php',680,410);\""); ?>
+                 <?php echo cls_HTML::html_img_link(__IMG_PATH . "carreras.png" , "#", "_self" ,"Carreras", "icon_3", "cp_icons", "carreras","", "onclick=\"open_form('careers.php',680,410);\""); ?>
+                 <?php echo cls_HTML::html_img_link(__IMG_PATH . "eventos.png" , "#", "_self" ,"Eventos", "icon_4", "cp_icons", "eventos","", "onclick=\"open_form('events.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "enlaces.png" , "#", "_self" ,"Links", "icon_5", "cp_icons", "links","", "onclick=\"open_form('links.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "etiquetas.png" , "#", "_self" ,"Tags", "icon_6", "cp_icons", "tags","", "onclick=\"open_form('tags.php',680,410);\""); ?>
+                 <?php echo cls_HTML::html_img_link(__IMG_PATH . "usuarios.png" , "#", "_self" ,"Usuarios", "icon_7", "cp_icons", "users","", "onclick=\"open_form('users.php',680,410);\""); ?>
+			     <?php echo cls_HTML::html_img_link(__IMG_PATH . "grupos.png" , "#", "_self" ,"Grupos de Usuarios", "icon_8", "cp_icons", "group_users","", "onclick=\"open_form('groups.php',680,410);\""); ?>
 		    </div>
      </div>
 

@@ -12,7 +12,7 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   // ------ Variables que definen el nombre actual del hosting -------
 
   //$myhost="http://localhost";
-  $myhost="http://10.50.1.138";
+  $myhost="http://10.20.30.105";   
   //$myhost="http://ucreativa.com";
   $myproject="ucreadmin";
   $mysite=$myhost . "/" . $myproject;
