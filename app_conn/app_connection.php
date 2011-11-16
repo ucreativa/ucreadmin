@@ -9,14 +9,14 @@
 	   private $password;
 	   private $str_conn;
 	   static $_instance;
-       private $selected_location;
-       private $selected_database;
-       private $database=array();
+      private $selected_location;
+      private $selected_database;
+      private $database=array();
 
  	   public function __construct(){
           $this->set_dbsupported();
 
-          $this->selected_location="local";   //set 'local' para pruebas locales
+          $this->selected_location="nolocal";   //set 'local' para pruebas locales
           $this->selected_database=$this->database[0]; //[0] mysql, [1] postgre ...
 
  	      if($this->selected_location=="local"){
@@ -26,8 +26,8 @@
     		   $this->user="root";
     		   $this->password="123";
            }else{
-               $this->host="localhost";
-    		   $this->dbname="creativa_ucreasite";
+            $this->host="ucreativa.com";
+    		   $this->dbname="creativa_ucreadmin";
     		   $this->port="";
     		   $this->user="creativa_admin";
     		   $this->password="ucreasite_admin";

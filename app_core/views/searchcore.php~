@@ -4,7 +4,7 @@
     require_once(__CLS_PATH . "cls_message.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
     
-    $searchcore= new cls_Searchbox;
+    $searchcore=new cls_Searchbox($_GET['db']);
     $process_listview=false;
     
     if(isset($_GET['form']) && isset($_GET['param'])){
@@ -26,7 +26,7 @@
 
   <body>
      <table id="search_results">
-         <?php 
+         <?php
 
          if($process_listview && count($data_set)!=0){
             try{
@@ -45,15 +45,15 @@
                         while($a < count($dataset)){
                             if($a==0){ ?>
                                <tr class=<?php echo "'" . $class_row . "'"; ?> >
-                               <td><a target="_parent" href="<?php echo __VWS_HOST_PATH . 'fileupload.php'; ?>?id=<?php echo $dataset[0]; ?>&edit=1&return=<?php echo $_GET['path']; ?>&form=<?php echo $_GET['form']; ?>" title="Administrar Archivos"><?php echo cls_HTML::html_img_tag(__IMG_PATH . "files.png" , "", "r_icon", "file", "WIDTH=24"); ?></a></td>
+                               <td><a target="_parent" href="<?php echo __VWS_HOST_PATH . 'fileupload.php'; ?>?id=<?php if($_GET['form']=='frm_section'){echo $dataset[2];}else{echo $dataset[0];} ?>&edit=1&return=<?php echo $_GET['path']; ?>&form=<?php echo $_GET['form']; ?>" title="Administrar Archivos"><?php echo cls_HTML::html_img_tag(__IMG_PATH . "folder.png" , "", "r_icon", "file", "width=24"); ?></a></td>
                                <td><a target="_parent" href="<?php echo $_GET['path']; ?>?id=<?php echo $dataset[0]; ?>&edit=1"><?php echo $dataset[$a]; ?></a></td>
                       <?php }else{ ?>
                                <td><a target="_parent" href="<?php echo $_GET['path']; ?>?id=<?php echo $dataset[0]; ?>&edit=1"><?php echo $dataset[$a]; ?></a></td>
                           <?php  } ?>
                              <?php  $a++;
                         } ?>
-                               </tr> 
-					       <?php  
+                               </tr>
+					       <?php
 					            $b++;
 					       }
                       ?>

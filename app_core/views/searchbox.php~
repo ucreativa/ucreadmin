@@ -12,7 +12,7 @@
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       
-	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "','S'); </script>";
+	       echo "<script type='text/javascript'> ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "',''); </script>";
 	   ?>
 	 <title>Búsqueda</title>   
  </head>
@@ -33,7 +33,7 @@
 		        <?php echo cls_HTML::html_input_text("txt_search","txt_search","search",64,32,"","",1,"","onkeyup=\"ajaxrequest_db('" . $_GET['path_form'] . "','" . $_GET['form'] . "',this.value);\"",""); ?>
 				    <br />
 				    <div id="listview">  
-				        <iframe id="form_search" src="searchcore.php" width="100%" height="100%" style="border: 0px;  margin-bottom: 50px;" frameborder="0"></iframe>  
+				        <iframe id="form_search" src="searchcore.php?db="<? echo $_GET['db']?> width="100%" height="100%" style="border: 0px;  margin-bottom: 50px;" frameborder="0"></iframe>  
 				    </div>
 				    <div id="action_buttons_form">
 				    <br>  

@@ -33,8 +33,8 @@
    
 		<div id="userpage">
 		    <?php //echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
-
 		    <fieldset class="groupbox" id="fst_files"> <legend>ARCHIVOS</legend>
+
 			    <div class="block_form" id="block_form_files">
 			      <?php include_once(__PLG_PATH . "/upload_files/base/index.php"); ?>
 				 </div>
@@ -42,6 +42,8 @@
 			 </fieldset>
 		    <?php // echo cls_HTML::html_form_end();?>
 		</div>
+				       <? echo cls_HTML::html_img_link(__IMG_PATH . "button_back.gif", $_GET['return'], "", "Regresar", "btn_back", "btn_back", "Regresar", "", "")?>
+		       <br/>
 	</div>
   </body>
  </html>

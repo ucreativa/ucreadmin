@@ -20,11 +20,28 @@ function open_form(form_name,width,height){
 }
 
 function close_form(){
-	document.getElementById("form_container").src = "";
+	 document.getElementById("form_container").src = "";
     document.getElementById("form_base").style.display = 'none';
     document.getElementById("button_close").style.display = 'none';
     document.getElementById("inactive_base").style.display = 'none';
 }
+
+// -------
+
+var v_open=0;
+
+function show_close_menu(id){
+	 $('#'+id).css('visibility','visible');
+	 if(v_open==0){
+	 	$('#'+id).slideDown(300);
+	 	v_open=1;
+	 }else{
+	 	$('#'+id).slideUp(300);
+	 	v_open=0;
+	 }
+}
+
+// -------
 
 function ajaxrequest_db(ruta,form,param){
     $(document).ready(function(){
@@ -39,48 +56,43 @@ function ajaxrequest_db(ruta,form,param){
     });
 }
 
-function crear_calendario(){
-    $(document).ready(function() {
-        $('.calendar').datepicker({ dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: '1950:2020',
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'], monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septimbre','Octubre','Noviembre','Diciembre']
-        });
-    });
-}
+function validate_pssw() {
+	var invalid = " "; // Invalid character is a space
+	var minLength = 6; // Minimum length
+	var pw1 = $("#txt_pssw").val();
+	var pw2 = $("#txt_cpssw").val();
+	
+	if(/^\d{2,4}$/.test(pw1)) {
+	  alert("El password debe tener de 2 a 4 digitos.");
+	  return false;
+	}
 
-function setear_calendario(mes,anio){
-    $(document).ready(function() {
-        $('.calendar').datepicker( "destroy" );
-        $('.calendar').datepicker({ dateFormat: 'dd-mm-yy', changeMonth: false, changeYear: false, defaultDate: '+' + (mes-3) + 'm' + '+' + anio + 'y', stepMonths: 0,
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septimbre','Octubre','Noviembre','Diciembre']
-        });
-    });
-}
+	// check for a value in both fields.
+	if (pw1 == '' || pw2 == '') {
+		alert('Por favor digite su contraseña 2 veces.');
+		return false;
+	}
+	// check for minimum length
 
-function setPeriodo(fecha,txt){
-    $(document).ready(function() {
-        var year = parseFloat(fecha.substring(fecha.length,fecha.length-4));
-        $('#'+txt.id).attr('Value',(year + "-" + (year*1+1)));
-    });
+	if (pw1.length < minLength) {
+		alert('Su contraseña debe ser de al menos ' + minLength + ' caracteres. Intenta de nuevo.');
+		return false;
+	}
+	// check for spaces
+	if (pw1.indexOf(invalid) > -1) {
+		alert("Espacios no son permitidos.");
+		return false;
+	}
+	else {
+		if (pw1 != pw2) {
+			alert ("No se ha digitado correctamente la confirmación de la contraseña. Por favor escriba de nuevo su password.");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }
-
-function cleanForm(miForm) {
-  // recorremos todos los campos que tiene el formulario
-  $(':input', miForm).each(function() {
-  var type = this.type;
-  var tag = this.tagName.toLowerCase();
-  //limpiamos los valores de los campos…
-  if (type == 'text' || type == 'password' || tag == 'textarea')
-  this.value = '';
-  // excepto de los checkboxes y radios, le quitamos el checked
-  // pero su valor no debe ser cambiado
-  else if (type == 'checkbox' || type == 'radio')
-  this.checked = false;
-  // los selects le ponesmos el indice a -
-  else if (tag == 'select')
-  this.selectedIndex = -1;
-  });
-}
-
 
 function valChangeImage(txt){
    var formatFile='';

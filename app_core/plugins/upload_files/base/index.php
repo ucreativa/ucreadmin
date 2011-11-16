@@ -125,7 +125,7 @@
  $(document).ready(function(){
    $("#inactive_base").css("display","block");
    $("#inactive_base").css("visibility","hidden");
-  });
+ });
 
 var id_button=null;
 var edit_new=null;

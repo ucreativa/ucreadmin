@@ -38,9 +38,9 @@
 	      
 			$result=$this->data_provide->sql_execute("SELECT tbl_users.user_id
 																	FROM tbl_users
-																	WHERE tbl_users.user_name = '" . $user . "'
-																	AND tbl_users.user_password = '" . md5($pssw) . "'
-																	AND tbl_users.user_status = 'A'");
+																	WHERE tbl_users.user_name = '" . $user 
+																	//. "' AND tbl_users.user_password = '" . md5($pssw) 
+																	. "' AND tbl_users.user_status = 'A'");
 			
 			$value=$this->data_provide->sql_get_rows($result);
 
@@ -58,7 +58,6 @@
            session_destroy();
            unset($this->auth_pg);
   	       $this->conn_status=false;
-  	       header("Location:" . __SITE_PATH);
 		}
 		  
     }

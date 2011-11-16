@@ -8,8 +8,9 @@
     	
 		 var $remote_connection;
 
+       // Pasamos por parámetro al constructor la BD seleccionada (real(1) o prueba(2))
 		 function __construct(){
-		    $this->remote_connection=new cls_RDatabase();
+		    $this->remote_connection=new cls_RDatabase($_SESSION['DB']);
 		 }
   
     }

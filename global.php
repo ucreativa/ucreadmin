@@ -12,14 +12,14 @@ ARCHIVO DE CONFIGURACIÓN GLOBAL.
   // ------ Variables que definen el nombre actual del hosting -------
 
   //$myhost="http://localhost";
-  $myhost="http://10.20.30.105";   
+  $myhost="http://10.20.30.103";   
   //$myhost="http://ucreativa.com";
   $myproject="ucreadmin";
   $mysite=$myhost . "/" . $myproject;
 
    // ------ Variables estáticas que definen las rutas absolutas del proyecto -------
   define('__ROOT__', $_SERVER["DOCUMENT_ROOT"]);
-  define('__HOST__', "http://10.50.1.138");
+  define('__HOST__', "http://10.20.30.103");
   define('__SITE_PATH', $mysite);
 
   define('__CLS_PATH', __ROOT__ . "/" . $myproject . "/app_core/classes/");

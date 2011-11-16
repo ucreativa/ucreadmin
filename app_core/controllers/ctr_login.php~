@@ -33,7 +33,7 @@
 				 	 	 
 				 	 header("Location:" . __VWS_HOST_PATH . "control_panel.php");
 				}else{
-					 cls_Message::show_message("Usuario o Password incorrectos!!","warning","");
+					 cls_Message::show_message("","warning","fail_auth");
 				}	
 	   }
 	   
@@ -42,6 +42,7 @@
 	   	
 		   if (isset($_POST['btn_logout'])){
 		       $this->login_acc->logout();
+		       header("Location: http://www.ucreativa.com/ucreasite");
 		   }
 
 	   }

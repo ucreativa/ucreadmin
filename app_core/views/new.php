@@ -38,7 +38,7 @@
 		<div id="userpage">
 		    <?php echo cls_HTML::html_form_tag("frm_new", "","","post"); ?>
 		    
-		    <fieldset class="groupbox" ><legend>Noticias</legend>
+		    <fieldset class="groupbox" ><legend>NOTICIAS</legend>
 			    <div class="block_form">							
 			       <?php echo cls_HTML::html_input_hidden("txt_id",""); ?>
 				    <?php echo cls_HTML::html_label_tag("Tag:"); ?>

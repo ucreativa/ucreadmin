@@ -1,5 +1,6 @@
 ﻿﻿<?php
 
+   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php");
    require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
    require_once( __CLS_PATH . "cls_database.php"); //Conf & Conn Base de datos del administrador
    require_once( __CLS_PATH . "cls_remdatabase.php"); //Conf & ConnBase de datos del sitio
@@ -12,18 +13,17 @@
 	 	 
 	   public function __construct(){
 			$this->data_provide=new cls_Database();
-			$this->remote_data_provide=new cls_RDatabase();	   
+			$this->remote_data_provide=new cls_RDatabase($_SESSION['DB']);	   
 	   } 	
 
 	   public function show_data($form, $param){ 
 	   
 	      if ($form=="frm_user"){
 					$result=$this->data_provide->sql_execute("SELECT tbl_users.user_id,
-																			tbl_users.user_krb_name,
-																			tbl_users.user_photo,
-																			tbl_users.user_email,
-																			tbl_users.user_ident,
-																			tbl_users.user_group_fk
+																			tbl_users.user_name,
+																			tbl_users.user_group_fk,
+																			tbl_users.user_info,
+																			tbl_users.user_status
 																			FROM tbl_users
 																			WHERE tbl_users.user_krb_name LIKE '" . $param . "%'");
 					                      		                          
@@ -50,12 +50,35 @@
                 															tbl_news.new_title,
                 															tbl_news.new_description,
                 															tbl_news.new_status,
-																			tbl_news.new_created,
-																			tbl_news.new_modified
-																			FROM tbl_news
-																			WHERE tbl_news.new_created LIKE '" . $param . "%'
-                                                                            OR tbl_news.new_created LIKE '" . $param . "%'
-                                                                            OR tbl_news.new_title LIKE '%" . $param . "%'");
+																				tbl_news.new_created,
+																				tbl_news.new_modified
+																				FROM tbl_news
+																				WHERE tbl_news.new_created LIKE '" . $param . "%'
+                                                            OR tbl_news.new_created LIKE '" . $param . "%'
+                                                            OR tbl_news.new_title LIKE '%" . $param . "%'");
+
+					return $this->remote_data_provide->sql_get_rows($result);
+			}
+			
+			if ($form=="frm_event"){
+					$result=$this->remote_data_provide->sql_execute("SELECT tbl_events.event_id,
+                															tbl_events.event_title,
+                															tbl_events.event_status,
+																				tbl_events.event_created
+																				FROM tbl_events
+																				WHERE tbl_events.event_created LIKE '" . $param . "%'
+                                                            OR tbl_events.event_title LIKE '%" . $param . "%'");
+
+					return $this->remote_data_provide->sql_get_rows($result);
+			}
+			
+			if ($form=="frm_career"){
+					$result=$this->remote_data_provide->sql_execute("SELECT tbl_careers.career_id,
+                															    tbl_careers.career_name,
+                															    tbl_careers.career_status,
+																			       tbl_careers.career_modified
+																			       FROM tbl_careers
+																			       WHERE tbl_careers.career_name LIKE '" . $param . "%'");
 
 					return $this->remote_data_provide->sql_get_rows($result);
 			}

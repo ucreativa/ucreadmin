@@ -7,11 +7,22 @@
 	   var $conn_RCdata; //Conexión remota a la bd del sitio a administrar
 	   var $core_conn;
 	   var $conn_status;
-       var $core_database;
+      var $core_database;
+      var $database_name;
 
-	   public function __construct(){
-			$this->conn_RCdata=new app_RConnection("localhost","creativa_ucreasite","","root","123");
-            require_once(__MOD_PATH . "mod_". $this->conn_RCdata->get_dbselected() . ".php");
+	   public function __construct($db){
+	   	$this->database_name=$db;
+	   	switch($this->database_name) {
+	   		case 1:
+	   		  $this->database_name="creativa_ucreasite";
+	   		break;
+	   		case 2:
+	   		  $this->database_name="creativa_ucreasite_test";
+	   		break;
+	   	}
+	   	
+			$this->conn_RCdata=new app_RConnection("ucreativa.com",$this->database_name,"","creativa_admin","ucreasite_admin");
+         require_once(__MOD_PATH . "mod_". $this->conn_RCdata->get_dbselected() . ".php");
 
             switch($this->conn_RCdata->get_dbselected()){
                case 'mysql':
@@ -26,7 +37,7 @@
 
 	   public function db_connect() {
 		    try{
-                    $this->core_conn=$this->core_database->db_connect();
+               $this->core_conn=$this->core_database->db_connect();
 			 }catch(Exception $e){
 				   cls_Message::show_message($e->getMessage(),"error","");
 			 }

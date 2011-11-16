@@ -9,8 +9,8 @@
 	   private $password;
 	   private $str_conn;
 	   static $_instance;
-       private $selected_database;
-       private $database=array();
+      private $selected_database;
+      private $database=array();
 
  	   public function __construct($host, $dbname, $port, $user, $password){
           $this->set_dbsupported();

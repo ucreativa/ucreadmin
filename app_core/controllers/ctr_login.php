@@ -42,6 +42,7 @@
 	   	
 		   if (isset($_POST['btn_logout'])){
 		       $this->login_acc->logout();
+		       header("Location: http://www.ucreativa.com/ucreasite/");
 		   }
 
 	   }

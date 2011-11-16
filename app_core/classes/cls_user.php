@@ -28,12 +28,11 @@
       
 	      $success=false; 
 			$result=$this->data_provide->sql_execute("INSERT INTO tbl_users 
-																   (user_krb_name,
-																	 user_photo,
-																	 user_email,
-																	 user_ident,
+																   (user_name,
+																	 user_password,
+																	 user_group_fk,
 																	 user_info,
-																	 user_group_fk)
+																	 user_status)
 																	 VALUES ('" . $userdata[0] . "','" . $userdata[1] . "','" . $userdata[2] . "',
 																	 " . $userdata[3] . ",'" . $userdata[4] . "'," . $userdata[5] . ")");
 			if($result){
@@ -48,11 +47,11 @@
 	   
 	      $success=false; 
 			$result=$this->data_provide->sql_execute("UPDATE tbl_users 
-																   SET user_krb_name = '" . $userdata[0] . "',
-																	user_photo = '" . $userdata[1] . "',
-																	user_email = '" . $userdata[2] .  "',
-																	user_ident = '" . $userdata[3] . "',
-																	user_info = '" . $userdata[4] . "',
+																   SET user_name = '" . $userdata[0] . "',
+																	user_password = '" . $userdata[1] . "',
+																	user_group_fk = '" . $userdata[2] .  "',
+																	user_info = '" . $userdata[3] . "',
+																	user_status = '" . $userdata[4] . "',
 																	user_group_fk = " . $userdata[5] . "
 																	WHERE tbl_users.user_id = " . $id_user);
 			if($result){

@@ -1,4 +1,6 @@
 <?php
+ require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
+
 /*
  * jQuery File Upload Plugin PHP Example 5.2.2
  * https://github.com/blueimp/jQuery-File-Upload
@@ -15,12 +17,52 @@ error_reporting(E_ALL | E_STRICT);
 class UploadHandler
 {
     private $options;
-    
+    var $upload_dir;
+    var $upload_url;
+    var $form_base;
+    var $id;
+    var $section;
+    var $filecore;
+
     function __construct($options=null) {
+
+        $this->upload_dir=str_replace("ucreadmin","ucreasite",__RSC_FLE_PATH);
+        $this->upload_url=str_replace(__HOST__."/ucreadmin","/ucreasite",__RSC_FLE_HOST_PATH);
+        $this->form_base=$_GET['form'];
+        $this->id=$_GET['id'];
+
+        switch($this->form_base){
+         case 'frm_section':
+           $section = "sections/section_";
+         break;
+         case 'frm_new':
+           $section = "news/new_";
+         break;
+         case 'frm_event':
+           $section = "events/event_";
+         break;
+         case 'frm_career':
+           $section = "careers/career_";
+         break;
+        }
+
+        $this->upload_dir=str_replace("ucreadmin","ucreasite",$this->upload_dir) . $section . $this->id . "/";
+        $this->upload_url=str_replace("ucreadmin","ucreasite",$this->upload_url) . $section . $this->id . "/";
+
+        //Creamos los directorios de imágenes y thumbs en caso de no existir
+	        if(!is_dir(substr($this->upload_dir, 0, -1))){
+	            mkdir(substr($this->upload_dir, 0, -1));
+	            mkdir($this->upload_dir."thumbs");
+	            chmod(substr($this->upload_dir, 0, -1),  0777);
+	            chmod($this->upload_dir."thumbs",  0777);
+	        }
+
         $this->options = array(
             'script_url' => $_SERVER['PHP_SELF'],
-            'upload_dir' => dirname(__FILE__).'/files/',
-            'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
+            //'upload_dir' => dirname(__FILE__).'/files/',
+            //'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
+            'upload_dir' => $this->upload_dir,
+            'upload_url' => $this->upload_url,
             'param_name' => 'files',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
@@ -42,10 +84,10 @@ class UploadHandler
                 ),
                 */
                 'thumbnail' => array(
-                    'upload_dir' => dirname(__FILE__).'/thumbnails/',
-                    'upload_url' => dirname($_SERVER['PHP_SELF']).'/thumbnails/',
-                    'max_width' => 80,
-                    'max_height' => 80
+                    'upload_dir' => str_replace("ucreadmin","ucreasite",$this->upload_dir) . "thumbs/",
+                    'upload_url' => str_replace("ucreadmin","ucreasite",$this->upload_url) . "thumbs/",
+                    'max_width' => 200,
+                    'max_height' => 115
                 )
             )
         );
@@ -53,8 +95,9 @@ class UploadHandler
             $this->options = array_merge_recursive($this->options, $options);
         }
     }
-    
+
     private function get_file_object($file_name) {
+
         $file_path = $this->options['upload_dir'].$file_name;
         if (is_file($file_path) && $file_name[0] !== '.') {
             $file = new stdClass();
@@ -74,7 +117,7 @@ class UploadHandler
         }
         return null;
     }
-    
+
     private function get_file_objects() {
         return array_values(array_filter(array_map(
             array($this, 'get_file_object'),

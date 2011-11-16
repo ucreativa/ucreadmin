@@ -25,6 +25,7 @@ class UploadHandler
     var $filecore;
 
     function __construct($options=null) {
+
         $this->upload_dir=str_replace("ucreadmin","ucreasite",__RSC_FLE_PATH);
         $this->upload_url=str_replace(__HOST__."/ucreadmin","/ucreasite",__RSC_FLE_HOST_PATH);
         $this->form_base=$_GET['form'];
@@ -43,18 +44,21 @@ class UploadHandler
          case 'frm_career':
            $section = "careers/career_";
          break;
+         case 'frm_career':
+           $section = "careers/career_";
+         break;
         }
 
-        $this->upload_dir=$this->upload_dir . $section.$this->id."/";
-        $this->upload_url=$this->upload_url . $section.$this->id."/";
+        $this->upload_dir=str_replace("ucreadmin","ucreasite",$this->upload_dir) . $section . $this->id . "/";
+        $this->upload_url=str_replace("ucreadmin","ucreasite",$this->upload_url) . $section . $this->id . "/";
 
         //Creamos los directorios de imágenes y thumbs en caso de no existir
-        if(!is_dir(substr($this->upload_dir, 0, -1))){
-            mkdir(substr($this->upload_dir, 0, -1));
-            mkdir($this->upload_dir."thumbs");
-            chmod(substr($this->upload_dir, 0, -1),  0777);
-            chmod($this->upload_dir."thumbs",  0777);
-        }
+	        if(!is_dir(substr($this->upload_dir, 0, -1))){
+	            mkdir(substr($this->upload_dir, 0, -1));
+	            mkdir($this->upload_dir."thumbs");
+	            chmod(substr($this->upload_dir, 0, -1),  0777);
+	            chmod($this->upload_dir."thumbs",  0777);
+	        }
 
         $this->options = array(
             'script_url' => $_SERVER['PHP_SELF'],
@@ -83,8 +87,8 @@ class UploadHandler
                 ),
                 */
                 'thumbnail' => array(
-                    'upload_dir' => $this->upload_dir . "thumbs/",
-                    'upload_url' => $this->upload_url . "thumbs/",
+                    'upload_dir' => str_replace("ucreadmin","ucreasite",$this->upload_dir) . "thumbs/",
+                    'upload_url' => str_replace("ucreadmin","ucreasite",$this->upload_url) . "thumbs/",
                     'max_width' => 200,
                     'max_height' => 115
                 )
