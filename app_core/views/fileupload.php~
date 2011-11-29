@@ -1,5 +1,5 @@
-﻿<?php
-
+<?php
+ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -32,7 +32,7 @@
    <div id='msg_box_container'></div>
    
 		<div id="userpage">
-		    <?php echo $_GET['return'];//echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
+		    <?php //echo cls_HTML::html_form_tag("frm_file", "","","post"); ?>
 		    <fieldset class="groupbox" id="fst_files"> <legend>ARCHIVOS</legend>
 
 			    <div class="block_form" id="block_form_files">
@@ -47,3 +47,4 @@
 	</div>
   </body>
  </html>
+ <? 	ob_end_flush();?>

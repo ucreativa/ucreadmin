@@ -1,6 +1,6 @@
 ﻿<?php
 
-   require_once(__CLS_PATH . "cls_database.php");
+   require_once(__CLS_PATH . "cls_remdatabase.php");
 
 	class cls_Area {
 	

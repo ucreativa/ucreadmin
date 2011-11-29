@@ -7,7 +7,7 @@
 	   private $data_provide;
 	 	  
 	   public function __construct(){
-			$this->data_provide=new cls_RDatabase();
+			$this->data_provide=new cls_RDatabase($_SESSION['DB']);
 	   } 	
 	 
 	   public function get_careerdata($id_career){

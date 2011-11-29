@@ -11,7 +11,7 @@
       var $database_name;
 
 	   public function __construct($db){
-	   	
+	   	$this->database_name=$db;
 	   	switch($this->database_name) {
 	   		case 1:
 	   		  $this->database_name="creativa_ucreasite";

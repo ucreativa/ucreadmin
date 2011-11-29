@@ -1,4 +1,5 @@
 <?php
+ require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php");
  require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
 
 /*
@@ -23,11 +24,18 @@ class UploadHandler
     var $id;
     var $section;
     var $filecore;
+    var $site;
 
     function __construct($options=null) {
 
-        $this->upload_dir=str_replace("ucreadmin","ucreasite",__RSC_FLE_PATH);
-        $this->upload_url=str_replace(__HOST__."/ucreadmin","/ucreasite",__RSC_FLE_HOST_PATH);
+        if($_GET['db']==1){
+        		$this->site="ucreasite";
+        }else{
+           $this->site="ucreasite_test";
+        }
+        
+        $this->upload_dir=str_replace("ucreadmin",$this->site,__RSC_FLE_PATH);
+        $this->upload_url=str_replace(__HOST__."/ucreadmin","/".$this->site,__RSC_FLE_HOST_PATH);
         $this->form_base=$_GET['form'];
         $this->id=$_GET['id'];
 
@@ -44,10 +52,13 @@ class UploadHandler
          case 'frm_career':
            $section = "careers/career_";
          break;
+         case 'frm_career':
+           $section = "careers/career_";
+         break;
         }
 
-        $this->upload_dir=str_replace("ucreadmin","ucreasite",$this->upload_dir) . $section . $this->id . "/";
-        $this->upload_url=str_replace("ucreadmin","ucreasite",$this->upload_url) . $section . $this->id . "/";
+        $this->upload_dir=str_replace("ucreadmin",$this->site,$this->upload_dir) . $section . $this->id . "/";
+        $this->upload_url=str_replace("ucreadmin",$this->site,$this->upload_url) . $section . $this->id . "/";
 
         //Creamos los directorios de imágenes y thumbs en caso de no existir
 	        if(!is_dir(substr($this->upload_dir, 0, -1))){
@@ -84,8 +95,8 @@ class UploadHandler
                 ),
                 */
                 'thumbnail' => array(
-                    'upload_dir' => str_replace("ucreadmin","ucreasite",$this->upload_dir) . "thumbs/",
-                    'upload_url' => str_replace("ucreadmin","ucreasite",$this->upload_url) . "thumbs/",
+                    'upload_dir' => str_replace("ucreadmin",$this->site,$this->upload_dir) . "thumbs/",
+                    'upload_url' => str_replace("ucreadmin",$this->site,$this->upload_url) . "thumbs/",
                     'max_width' => 200,
                     'max_height' => 115
                 )

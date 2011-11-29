@@ -26,10 +26,10 @@
     		   $this->user="root";
     		   $this->password="123";
            }else{
-            $this->host="ucreativa.com";
+            $this->host="localhost";
     		   $this->dbname="creativa_ucreadmin";
     		   $this->port="";
-    		   $this->user="creativa_adfmin";
+    		   $this->user="creativa_admin";
     		   $this->password="ucreasite_admin";
            }
 

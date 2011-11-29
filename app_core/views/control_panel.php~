@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     include_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
@@ -17,12 +17,13 @@
     //Declaramos el controlador de la vista actual el cual contiene las acciones a ejecutar
     $ctr_Login=new ctr_Login();
     // Pasamos por parámetro al constructor la BD seleccionada (real(1) o prueba(2))
-    $ctr_CP=new ctr_ControlPanel();
+    $ctr_CP=new ctr_ControlPanel(); 
 ?>
 
 <html>
 
   <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
       <?php
           echo cls_HTML::html_js_header(__JS_PATH . "jquery-1.6.2.min.js");
           echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
@@ -96,12 +97,13 @@
 	            	 });
 	               </script>";
             } 
-            echo "<span>Conectar con: </span>";
-            echo cls_HTML::html_link_tag("BD: Sitio de Prueba", "btn_ucreasite_test", "ext_button", "?username=" . $row[0][1] . "&db=2", "", "Conectar con Sitio de prueba", "");
-            echo cls_HTML::html_link_tag("BD: Sitio Web", "btn_ucreasite", "ext_button", "?username=" . $row[0][1] . "&db=1", "", "Conectar con Sitio de la Universidad", "");
-            echo "<span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>";
-            echo cls_HTML::html_link_tag("Ver ucreativa.com", "web_real", "ext_button", "http://www.ucreativa.com/ucreasite/", "_blank", "Sitio de la Universidad", "");
-            echo cls_HTML::html_link_tag("Ver ucreasite_test", "web_test", "ext_button", "http://www.ucreativa.com/ucreasite_test/", "_blank", "Sitio de Prueba", "");
+            echo "<span>Conectar con BD:</span>";
+            echo cls_HTML::html_link_tag("Sitio de Prueba", "btn_ucreasite_test", "ext_button", "?username=".$row[0][1]."&db=2", "", "Conectar con Sitio de prueba", "");
+            echo cls_HTML::html_link_tag("Sitio Web", "btn_ucreasite", "ext_button", "?username=".$row[0][1]."&db=1", "", "Conectar con Sitio de la Universidad", "");
+            echo "<span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>";
+            echo "<span>Ver: </span>";
+            echo cls_HTML::html_link_tag("ucreativa.com", "web_real", "ext_button", "http://www.ucreativa.com/ucreasite/", "_blank", "Sitio de la Universidad", "");
+            echo cls_HTML::html_link_tag("ucreasite_test", "web_test", "ext_button", "http://www.ucreativa.com/ucreasite_test/", "_blank", "Sitio de Prueba", "");
            
         ?>
      </div>

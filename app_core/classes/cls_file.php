@@ -1,4 +1,5 @@
 ﻿<?php
+   	 require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/security.php");
    require_once( __CLS_PATH . "cls_remdatabase.php");
 
 	class cls_File { 
@@ -6,7 +7,7 @@
 	   private $data_provide;
 	 	 
 	   public function __construct(){
-			$this->data_provide=new cls_RDatabase();
+			$this->data_provide=new cls_RDatabase($_SESSION['DB']);
 	   } 	
 
 	   public function get_filedata($name_file){

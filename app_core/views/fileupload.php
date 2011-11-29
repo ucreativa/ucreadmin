@@ -1,5 +1,5 @@
-﻿<?php
-
+<?php
+ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -17,7 +17,7 @@
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery.betterTooltip.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "functions.js");
-           echo cls_HTML::html_js_header(__JS_PATH . "ckeditor/ckeditor_basic.js");
+          echo cls_HTML::html_js_header(__JS_PATH . "ckeditor/ckeditor_basic.js");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "style.css","screen");
 	       echo cls_HTML::html_css_header(__CSS_PATH . "tooltip/theme/style_tooltip.css","screen");
 	   ?>
@@ -47,3 +47,4 @@
 	</div>
   </body>
  </html>
+ <? 	ob_end_flush();?>

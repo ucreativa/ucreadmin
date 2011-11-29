@@ -1,9 +1,8 @@
-﻿<?php 
-
+<?php 
    /* Archivo controlador que contiene los llamados a las acciones de la vista
    de Login (LOGIN, LOGOUT) */
    
-   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); 
+  // require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); 
    require_once( __CLS_PATH . "cls_login.php");
    
    class ctr_Login {
@@ -31,7 +30,7 @@
 				 	 $_SESSION['AUTH']="YES";
 				 	 $_SESSION['IDUSER']=$this->login_acc->get_user_id(); 
 				 	 	 
-				 	 header("Location:" . __VWS_HOST_PATH . "control_panel.php");
+				 	 header("Location:" . __VWS_HOST_PATH . "control_panel.php);
 				}else{
 					 cls_Message::show_message("","warning","fail_auth");
 				}	
@@ -42,10 +41,9 @@
 	   	
 		   if (isset($_POST['btn_logout'])){
 		       $this->login_acc->logout();
-		       header("Location: http://www.ucreativa.com/ucreasite");
+		       header("Location: http://www.ucreativa.com/ucreasite/");
 		   }
 
 	   }
-   }
-	 
+   } 
 ?>

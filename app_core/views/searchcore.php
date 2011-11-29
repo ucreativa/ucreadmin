@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+    ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_message.php");
@@ -61,8 +62,11 @@
     	       cls_Message::show_message($e->getMessage(),"error","");
     	    } 
     }else{
+    	  echo cls_HTML::html_img_tag(__IMG_PATH . "loading.gif", "", "loading", "", "");
     	  echo "<div class='doc_box'><span><b>No hay resultados que coincidan.</b></span></div>";
-    }?>       
+    }
+    ob_end_flush();
+    ?>       
     </table>
   </body>
  </html>

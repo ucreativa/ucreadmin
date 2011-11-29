@@ -1,4 +1,5 @@
 ﻿<?php
+    ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
 ?>
@@ -41,7 +42,7 @@
 				    </div>
 				 </fieldset> 
 
-          <?php echo cls_HTML::html_form_end(); ?>
+          <?php echo cls_HTML::html_form_end(); ob_end_flush();?>
 		</div>
 	</div>
   </body>

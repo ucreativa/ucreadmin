@@ -1,7 +1,7 @@
-﻿<?php
+<?php
     require_once(__CLS_PATH . "cls_html.php");
     
-    class cls_Message {
+    class cls_Message { 
 
         function __construct(){
         }

@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+	ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -10,6 +11,7 @@
 
 <html>
  <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	   <?php
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-1.6.2.min.js");
 	       echo cls_HTML::html_js_header(__JS_PATH . "jquery-ui-1.8.6.custom.min.js");
@@ -41,11 +43,11 @@
 		    <fieldset class="groupbox" ><legend>NOTICIAS</legend>
 			    <div class="block_form">							
 			       <?php echo cls_HTML::html_input_hidden("txt_id",""); ?>
-				    <?php echo cls_HTML::html_label_tag("Tag:"); ?>
+				    <?php //echo cls_HTML::html_label_tag("Tag:"); ?>
 				    <br />
 				    <?php 
                 //FALTA LLENAR DESDE BD				    
-				    echo cls_HTML::html_multiselect("cmb_tags", array(0=>"Ucreativa",1=>"Eventos",2=>"News"), "cmb_groups", "combo", 1, "", ""); ?>
+				    //echo cls_HTML::html_multiselect("cmb_tags", array(0=>"Ucreativa",1=>"Eventos",2=>"News"), "cmb_groups", "combo", 1, "", ""); ?>
 				    <br /><br />
 				    <?php echo cls_HTML::html_label_tag("Título:"); ?>
 				    <br />
@@ -126,7 +128,7 @@
 		   }else{
 		  			echo "<script>$('#txt_id').attr('value','_NEW');</script>";
 		  	}  
-
+ob_end_flush();
      ?>
 	</div>
   </body>

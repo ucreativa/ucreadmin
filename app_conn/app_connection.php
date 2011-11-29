@@ -16,7 +16,7 @@
  	   public function __construct(){
           $this->set_dbsupported();
 
-          $this->selected_location="nolocal";   //set 'local' para pruebas locales
+          $this->selected_location="local";   //set 'local' para pruebas locales
           $this->selected_database=$this->database[0]; //[0] mysql, [1] postgre ...
 
  	      if($this->selected_location=="local"){
@@ -26,7 +26,7 @@
     		   $this->user="root";
     		   $this->password="123";
            }else{
-            $this->host="ucreativa.com";
+            $this->host="localhost";
     		   $this->dbname="creativa_ucreadmin";
     		   $this->port="";
     		   $this->user="creativa_admin";

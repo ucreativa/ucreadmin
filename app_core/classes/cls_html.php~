@@ -48,7 +48,7 @@
            return "<a href='" . $href . "' target='" . $target . "' title='" . $title . "'><img src='" . $src . "' id='" . $id . "' class='" . $class . "' alt='" . $alt . "' " . $size . " " . $event . " /></a>" . "\n";
         }
         
-        public function html_check($name, $class, $checked, $tabindex, $disabled, $event){
+        public function html_input_checkbox($name, $class, $checked, $tabindex, $disabled, $event){
            return "<input type='checkbox' name='" . $name . "' id='" . $name . "' class='" . $class . "' tabindex='". $tabindex ."' " . $checked . " " . $disabled . " " . $event . " />" . "\n";          
         }
         

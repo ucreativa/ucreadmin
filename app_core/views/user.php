@@ -1,4 +1,5 @@
 ﻿<?php
+    ob_end_flush();
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -116,7 +117,7 @@
 		   }else{
 		  			echo "<script>$('#txt_id').attr('value','_NEW');</script>";
 		  	}  
-
+ob_end_flush();
      ?>
     
 	</div>

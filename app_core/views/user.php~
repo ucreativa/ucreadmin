@@ -1,4 +1,5 @@
 ﻿<?php
+    ob_end_flush();
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -51,12 +52,6 @@
 		          <br /><br />
 				 </div>
 			    <div class="block_form">
-			       <?php echo cls_HTML::html_label_tag("Foto:"); ?>
-				    <br />
-		          <?php echo cls_HTML::html_img_tag(__RSC_PHO_HOST_PATH . "unknow.jpg" , "img_userphoto", "img", "FOTO", "height=70"); ?>
-		          <br />   
-			       <?php echo cls_HTML::html_input_file("txt_photo","image/png,image/jpg", "txt_photo", "text", 128, "", 6, "", "onchange='valChangeImage(this)'"); ?>
-		          <br /><br />
 				    <?php echo cls_HTML::html_label_tag("Descripción breve:"); ?>
 				    <br />
 				    <?php echo cls_HTML::html_textarea(4,30,"txt_info","txt_info","text","",7,"","",""); ?>

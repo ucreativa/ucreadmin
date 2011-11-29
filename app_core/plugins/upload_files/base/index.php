@@ -33,7 +33,7 @@
 	<!-- Elemento contenedor de mensajes de usuario -->
    <div id='msg_box_container'></div>
 
-    <form id="frm_file" action="<?php echo $uploadfile_path . "?form=".$_GET['form']."&id=".$_GET['id'];?>" method="POST" enctype="multipart/form-data">
+    <form id="frm_file" action="<?php echo $uploadfile_path . "?db=".$_SESSION['DB']."&form=".$_GET['form']."&id=".$_GET['id'];?>" method="POST" enctype="multipart/form-data">
 
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">

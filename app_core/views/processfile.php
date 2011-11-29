@@ -1,4 +1,5 @@
-ï»¿<?php
+<?php
+    ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CTR_PATH . "ctr_file.php");
 
@@ -10,7 +11,7 @@
       //Si la imagen ya existe impide registrarla
       if($_POST['txt_filename']!=$filedata_tmp['name'] || $_POST['edit']=='_EDIT'){
           if($ctr_File->btn_save_click()){
-            //Realizamos un click virtual en el botÃ³n de subir imagen
+            //Realizamos un click virtual en el botón de subir imagen
             echo "<script>$('#'+id_button.replace('_data', '')).click();</script>";
           }
       }else{
@@ -21,7 +22,7 @@
 
     if(isset($_POST['filename'])){
         $file_data=$ctr_File->get_filedata($_POST['filename']);
-        //Realizamos un click virtual en el botÃ³n de subir imagen
+        //Realizamos un click virtual en el botón de subir imagen
         echo "<script>$('#txt_author').attr('value','".$file_data['author']."');</script>
               <script>$('#txt_date').attr('value','".$file_data['date']."');</script>
               <script>$('#txt_description').attr('value','".$file_data['description']."');</script>
@@ -32,5 +33,4 @@
     if(isset($_POST['delete_file'])){
        $ctr_File->btn_delete_click();
     }
-
-?>
+ob_end_flush(); ?>

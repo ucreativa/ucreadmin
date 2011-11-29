@@ -1,4 +1,5 @@
-ï»¿<?php
+<?php
+ob_start("ob_gzhandler");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php");
     require_once(__CLS_PATH . "cls_html.php");
     require_once(__CLS_PATH . "cls_searchbox.php");
@@ -46,17 +47,17 @@
 				    <?php 
                 //FALTA LLENAR DESDE BD				    
 				   // echo cls_HTML::html_multiselect("cmb_tags", array(0=>"Ucreativa",1=>"Eventos",2=>"News"), "cmb_groups", "combo", 1, "", ""); ?>
-				    <?php echo cls_HTML::html_label_tag("TÃ­tulo:"); ?>
+				    <?php echo cls_HTML::html_label_tag("Título:"); ?>
 				    <br />
-				    <?php echo cls_HTML::html_input_text("txt_title","txt_title","text",128,20,"","TÃ­tulo",4,"","","required"); ?>
+				    <?php echo cls_HTML::html_input_text("txt_title","txt_title","text",128,20,"","Título",4,"","","required"); ?>
 				    <br /><br />
-				    <?php echo cls_HTML::html_label_tag("DescripciÃ³n:"); ?>
+				    <?php echo cls_HTML::html_label_tag("Descripción:"); ?>
 				    <br />
 				    <?php echo cls_HTML::html_textarea(6, 60,"txt_description", "txt_description", "textarea", "", 2, "", "", "required"); ?>
 				    <br /><br />
                 <?php echo cls_HTML::html_label_tag("URL:"); ?>
 				    <br />
-				    <?php echo cls_HTML::html_input_text("txt_url","txt_url","text",128,20,"","URL: pÃ¡gina oficial del evento",6,"","","required"); ?>
+				    <?php echo cls_HTML::html_input_text("txt_url","txt_url","text",128,20,"","URL: página oficial del evento",6,"","","required"); ?>
 				    <br /><br />
 				    <?php echo cls_HTML::html_label_tag("Estado:"); ?>
 				    <?php echo cls_HTML::html_select("cmb_status", array('A' => 'Activa', 'I' => 'Inactiva'), "cmb_status", "combo", 9, "", ""); ?>
@@ -73,7 +74,7 @@
 		</div>
 		   
       <?php
-	      //Eventos click de los botones de acciÃ³n
+	      //Eventos click de los botones de acción
 	      
 		   if(isset($_POST['btn_new'])){
 		   	$ctr_Event->btn_new_click();
@@ -84,13 +85,13 @@
 		   }
 		   
 		   if(isset($_POST['btn_search'])){
-		   	 $search=new cls_Searchbox($_GET['db']);
-		       echo $search->show_searchbox(__VWS_HOST_PATH . "event.php", "BÃºsqueda de Eventos", "&nbsp;&nbsp;Digite el TÃ­tulo del Evento:", "event.php", "frm_event");
+		   	 $search=new cls_Searchbox();
+		       echo $search->show_searchbox(__VWS_HOST_PATH . "event.php", "Búsqueda de Eventos", "&nbsp;&nbsp;Digite el Título del Evento:", "event.php", "frm_event");
 		   }
 		   
 		   
-		   /*Procedemos a llenar el formulario con los datos traÃ­dos del formulario
-		    de bÃºsqueda */
+		   /*Procedemos a llenar el formulario con los datos traídos del formulario
+		    de búsqueda */
 
 		  	if(isset($_GET['edit']) && isset($_GET['id'])){
 		  		
@@ -109,7 +110,7 @@
 		   }else{
 		  			echo "<script>$('#txt_id').attr('value','_NEW');</script>";
 		  	}  
-
+ob_end_flush();
      ?>
 	</div>
   </body>

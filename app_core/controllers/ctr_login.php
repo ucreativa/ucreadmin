@@ -1,9 +1,8 @@
-﻿<?php 
-
+<?php 
    /* Archivo controlador que contiene los llamados a las acciones de la vista
    de Login (LOGIN, LOGOUT) */
    
-   require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); 
+  // require_once($_SERVER["DOCUMENT_ROOT"] . "/ucreadmin/global.php"); 
    require_once( __CLS_PATH . "cls_login.php");
    
    class ctr_Login {
@@ -46,6 +45,5 @@
 		   }
 
 	   }
-   }
-	 
+   } 
 ?>
